@@ -4,6 +4,12 @@ defmodule Picoquotes.Contexts.QuoteContext do
   alias Picoquotes.Models.{Author, Quote}
   alias Picoquotes.Repo
 
+  def create_quote(params) do
+    params
+    |> Quote.build()
+    |> Repo.insert()
+  end
+
   @doc """
   Returns all quotes sorted by inserted at with their author preloaded.
   """
