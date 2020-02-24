@@ -21,7 +21,7 @@ defmodule Picoquotes.Tasks.Migrate do
 
   defp start_services do
     Logger.info("Starting dependencies...")
-  
+
     Enum.each(@repo_apps, fn app ->
       {:ok, _} = Application.ensure_all_started(app)
     end)
