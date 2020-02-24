@@ -23,6 +23,7 @@ defmodule Picoquotes.MixProject do
   defp deps do
     [
       {:absinthe_plug, "~> 1.4"},
+      {:confex, "~> 3.4.0"},
       {:ecto_sql, "~> 3.0"},
       {:jason, "~> 1.1"},
       {:plug_cowboy, "~> 2.0"},
