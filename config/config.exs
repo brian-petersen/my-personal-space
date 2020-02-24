@@ -6,3 +6,5 @@ config :picoquotes,
 config :picoquotes,
        :database_url,
        {:system, :string, "DATABASE_URL", "ecto://postgres:postgres@db/picoquotes"}
+
+import_config "#{Mix.env()}.exs"
