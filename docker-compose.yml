@@ -1,0 +1,18 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "4000:4000"
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    command: mix run --no-halt
+  db:
+    image: postgres:11.5
+    environment: 
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
