@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Picoquotes</title>
+  <link rel="stylesheet" href="./styles.scss">
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <a class="logo" href="/">Picoquotes</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <div id="app">
+      <ul id="quotes">
+        <li v-for="quote in quotes">
+          <p>{{ quote.text }}</p>
+          <a v-bind:href="`/author/${quote.author.slug}`">{{ quote.author.name }}</a>
+          <div class="clear"></div>
+        </li>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,156 @@
+body {
+  background: url(./background.png) repeat;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.15em;
+  margin-top: 80px;
+  margin-bottom: 30px;
+  margin-right: 30px;
+  margin-left: 30px;
+}
+
+header {
+  background: #404040;
+  box-shadow: 0 0 2px black;
+  padding: 10px 30px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  
+  a.logo {
+    color: #fff;
+    font-size: 1.5em;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    &:hover {
+      color: #eaeaea;
+    }
+  }
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+#quotes {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+  
+  li {
+    padding: 15px;
+    margin-bottom: 30px;
+    border-radius: 5px;
+    background-color: rgba(255,255,255,0.75);
+    box-shadow: 1px 1px 5px rgba(144, 144, 144, 0.75);
+    
+    &:last-child {
+      margin-bottom: 0px;
+    }
+    
+    p {
+      margin: 0px;
+    }
+    
+    a {
+      color: #5a5a5a;
+      font-weight: 600;
+      text-decoration: none;
+      text-align: right;
+      display: block;
+      margin-top: 10px;
+
+      &:hover {
+        color: #7f7f7f;
+      }
+    }
+  }
+}
+
+// header .container {
+//   position: relative;
+// }
+
+// ul.menu {
+//   margin: 0;
+//   padding: 0;
+//   list-style: none;
+//   position: absolute;
+//   right: 0;
+//   bottom: 0;
+// }
+
+// ul.menu li {
+//   display: inline;
+//   padding: 0 5px;
+// }
+
+// ul.menu li a {
+//   color: #fff;
+//   font-size: 1.2em;
+//   text-decoration: none;
+// }
+
+// ul.menu li a:hover {
+//   color: #eaeaea;
+// }
+
+// .search-wrap {
+//   position: absolute;
+//   right: -20px;
+//   top: 0;
+//   transition: right 500ms;
+// }
+
+// .search-wrap.show {
+//   right: 0;
+// }
+
+// .search-wrap.show input#search {
+//   opacity: 1;
+//   width: 250px;
+// }
+
+
+// .search-wrap.show a.close-search {
+//   opacity: 1;
+// }
+
+// a.close-search {
+//   position: absolute;
+//   top: 50%;
+//   right: 5px;
+//   transform: translateY(-50%);
+//   font-size: 15px;
+//   color: #a0a0a0;
+//   text-decoration: none;
+//   opacity: 0;
+//   transition: opacity 500ms;
+// }
+
+// a.close-search:hover {
+//   color: #fff;
+// }
+
+// input#search {
+//   border: none;
+//   color: #fff;
+//   background: #252525;
+//   padding: 6px 10px;
+//   border-radius: 5px;
+//   width: 0px;
+//   opacity: 0;
+//   transition: width 500ms, opacity 500ms;
+// }
+
+// @media (max-width: 550px) {
+//   header {
+//       position: absolute;
+//   }
+
+//   .quote {
+//       margin-bottom: 25px;
+//   }
+// }

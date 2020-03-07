@@ -15,7 +15,9 @@ defmodule Picoquotes.Router do
   forward("/graphql", to: Absinthe.Plug, schema: Picoquotes.Schema)
   forward("/graphiql", to: Absinthe.Plug.GraphiQL, schema: Picoquotes.Schema)
 
+  forward("/static", to: Plug.Static, at: "/", from: "static")
+
   match _ do
-    send_resp(conn, 404, "Not found")
+    send_file(conn, 200, "static/index.html")
   end
 end
