@@ -50,4 +50,4 @@ COPY --from=web_builder /app/dist static
 
 EXPOSE 4000
 
-CMD ["entrypoint.sh"]
+CMD ["./entrypoint.sh"]
