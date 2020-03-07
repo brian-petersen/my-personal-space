@@ -45,6 +45,9 @@ RUN apk update && \
     apk add ncurses-libs
 
 COPY entrypoint.sh .
+
+RUN chmod 755 entrypoint.sh
+
 COPY --from=app_builder /app/_build/prod/rel/picoquotes .
 COPY --from=web_builder /app/dist static
 
