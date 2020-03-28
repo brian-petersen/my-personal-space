@@ -10,7 +10,8 @@ import Config
 # which you should run after static files are built and
 # before starting your production server.
 config :picoquotes, PicoquotesWeb.Endpoint,
-  url: [host: "picoquotes.luckywatcher.dev", port: 4000],
+  http: [ip: {0, 0, 0, 0}, port: 4000],
+  url: [host: "picoquotes.luckywatcher.dev", port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json",
   server: true
 
