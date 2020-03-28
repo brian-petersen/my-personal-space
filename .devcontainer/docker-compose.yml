@@ -1,0 +1,18 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000"
+    volumes:
+      - ..:/workspace:cached
+    # VS Code Containers requires this to setup things
+    command: /bin/sh -c "while sleep 1000; do :; done"
+
+  db:
+    image: postgres:11.5
+    environment: 
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres

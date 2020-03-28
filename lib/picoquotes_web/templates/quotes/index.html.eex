@@ -1,0 +1,7 @@
+<%= for q <- @quotes do %>
+  <section class="quote">
+    <p><%= q.text %></p>
+    <a href="<%= Routes.authors_path(@conn, :show, q.author.slug) %>"><%= q.author.name %></a>
+    <div class="clear"></div>
+  </section>
+<% end %>
