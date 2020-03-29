@@ -19,7 +19,7 @@
 	// },
 
 	// Add the IDs of extensions you want installed when the container is created.
-	"extensions": ["mjmcloug.vscode-elixir"],
+	"extensions": ["jakebecker.elixir-ls"],
 
 	// Uncomment the next line if you want start specific services in your Docker Compose config.
 	// "runServices": [],
