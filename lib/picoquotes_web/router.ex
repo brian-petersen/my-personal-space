@@ -1,7 +1,7 @@
 defmodule PicoquotesWeb.Router do
   use Phoenix.Router
 
-  alias PicoquotesWeb.{AuthorsController, QuotesController}
+  alias PicoquotesWeb.{AuthorsController, SessionsController, QuotesController}
 
   import Phoenix.Controller
   import Plug.Conn
@@ -22,6 +22,9 @@ defmodule PicoquotesWeb.Router do
     pipe_through :browser
 
     get "/", QuotesController, :index
+
     get "/author/:slug", AuthorsController, :show
+
+    resources "/sessions", SessionsController, only: [:new, :create, :delete], singleton: true
   end
 end
