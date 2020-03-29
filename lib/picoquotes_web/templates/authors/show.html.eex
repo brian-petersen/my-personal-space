@@ -1,9 +1,9 @@
-<section>
-  <h2><%= @author.name %></h2>
-</section>
+<h1 class="mb-3"><%= @author.name %></h1>
 
 <%= for q <- @quotes do %>
-  <section>
-    <%= q.text %>
-  </section>
+  <div class="card mb-4">
+    <div class="card-body">
+      <%= q.text %>
+    </div>
+  </div>
 <% end %>
