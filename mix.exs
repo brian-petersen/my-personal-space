@@ -43,7 +43,8 @@ defmodule Picoquotes.MixProject do
       {:postgrex, ">= 0.0.0"},
       {:jason, "~> 1.0"},
       {:confex, "~> 3.4.0"},
-      {:slugify, "~> 1.3"}
+      {:slugify, "~> 1.3"},
+      {:bcrypt_elixir, "~> 2.2"}
     ]
   end
 

@@ -1,7 +1,7 @@
 ### app builder ###
 FROM hexpm/elixir:1.10.1-erlang-22.2.7-alpine-3.11.3 AS builder
 
-RUN apk add --no-cache --update nodejs npm
+RUN apk add --no-cache --update build-base nodejs npm
 
 WORKDIR /app
 
