@@ -1,4 +1,6 @@
-alias Picoquotes.Contexts.{AuthorContext, QuoteContext}
+alias Picoquotes.Contexts.{AuthorContext, QuoteContext, UserContext}
+
+{:ok, _user} = UserContext.create_user(%{username: "username", password: "password"})
 
 {:ok, saint_augustine} = AuthorContext.create_author(%{name: "Saint Augustine"})
 {:ok, john_lennon} = AuthorContext.create_author(%{name: "John Lennon"})

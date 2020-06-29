@@ -16,7 +16,7 @@ defmodule Picoquotes.Models.User do
     %__MODULE__{}
     |> cast(params, [:username, :password])
     |> validate_required([:username, :password])
-    |> validate_length(:password, min: 10)
+    |> validate_length(:password, min: 8)
     |> validate_format(:username, ~r/^[a-z0-9_-]{3,15}$/i)
     |> unique_constraint(:username)
     |> put_password_hash()
