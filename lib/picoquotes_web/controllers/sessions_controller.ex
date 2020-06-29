@@ -21,7 +21,7 @@ defmodule PicoquotesWeb.SessionsController do
       _ ->
         conn
         |> put_flash(:error, "Invalid username or password.")
-        |> redirect(to: Routes.sessions_path(conn, :new))
+        |> redirect(to: Routes.sessions_path(conn, :new, username: username))
     end
   end
 
