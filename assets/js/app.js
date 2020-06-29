@@ -11,6 +11,8 @@ import css from "../css/app.scss"
 import "phoenix_html"
 
 import "jquery"
-import "bootstrap/js/dist/collapse"
+import "popper.js"
+import "bootstrap/js/dist/dropdown"
+import "bootstrap-select"
 
 // Import local files

@@ -15,7 +15,7 @@ defmodule Picoquotes.Models.Quote do
   def build(params) do
     %__MODULE__{}
     |> cast(params, [:text, :author_id])
-    |> validate_required([:text])
+    |> validate_required([:text, :author_id])
     |> assoc_constraint(:author)
   end
 end

@@ -18,4 +18,13 @@ defmodule Picoquotes.Contexts.AuthorContext do
 
     Repo.one(query)
   end
+
+  def list_authors_sorted do
+    query =
+      from(a in Author,
+        order_by: a.name
+      )
+
+    Repo.all(query)
+  end
 end

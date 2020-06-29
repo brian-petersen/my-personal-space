@@ -42,4 +42,11 @@ defmodule Picoquotes.Contexts.QuoteContext do
 
     Repo.all(query)
   end
+
+  def delete_quote_by_id(id) do
+    case Repo.get(Quote, id) do
+      nil -> {:error, "No quote found to delete"}
+      q -> Repo.delete(q)
+    end
+  end
 end

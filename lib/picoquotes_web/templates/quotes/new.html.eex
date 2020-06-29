@@ -1,0 +1,13 @@
+<%= form_for @changeset, Routes.quotes_path(@conn, :create), fn f -> %>
+  <div class="form-group">
+    <label for="quote_text">Quote</label>
+    <%= textarea f, :text, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <label for="quote_author_id">Author</label>
+    <%= select f, :author_id, @authors, class: "selectpicker form-control", "data-live-search": "true" %>
+  </div>
+
+  <%= submit "Create", class: "btn btn-primary" %>
+<% end %>

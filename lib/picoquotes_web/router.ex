@@ -22,9 +22,8 @@ defmodule PicoquotesWeb.Router do
     pipe_through :browser
 
     get "/", QuotesController, :index
-
     get "/author/:slug", AuthorsController, :show
-
+    resources "/quotes", QuotesController, only: [:new, :create, :delete]
     resources "/sessions", SessionsController, only: [:new, :create, :delete], singleton: true
   end
 end
