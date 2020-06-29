@@ -35,3 +35,4 @@ npm-debug.log
 
 # Other
 /.elixir_ls/
+/.envrc
