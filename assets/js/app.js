@@ -14,4 +14,3 @@ import "jquery"
 import "bootstrap/js/dist/collapse"
 
 // Import local files
-// import socket from "./socket"
