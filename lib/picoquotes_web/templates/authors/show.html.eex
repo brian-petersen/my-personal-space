@@ -1,5 +1,9 @@
 <h1 class="mb-3"><%= @author.name %></h1>
 
+<%= if Enum.empty?(@quotes) do %>
+  <p>The author has no quotes.</p>
+<% end %>
+
 <%= for q <- @quotes do %>
   <div class="card mb-4">
     <div class="card-body">
