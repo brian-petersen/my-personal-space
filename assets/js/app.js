@@ -12,6 +12,7 @@ import "phoenix_html"
 
 import "jquery"
 import "popper.js"
+import "bootstrap/js/dist/collapse"
 import "bootstrap/js/dist/dropdown"
 import "bootstrap-select"
 
