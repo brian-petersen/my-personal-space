@@ -11,7 +11,7 @@ import Config
 # before starting your production server.
 config :picoquotes, PicoquotesWeb.Endpoint,
   http: [ip: {0, 0, 0, 0}, port: 4000],
-  url: [host: "picoquotes.luckywatcher.dev", port: 80],
+  url: [host: "picoquotes.luckywatcher.dev", port: 443],
   cache_static_manifest: "priv/static/cache_manifest.json",
   server: true
 
