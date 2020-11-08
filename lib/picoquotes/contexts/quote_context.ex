@@ -30,9 +30,6 @@ defmodule Picoquotes.Contexts.QuoteContext do
     list_quotes_by_author(author_id)
   end
 
-  @doc """
-  Returns all quotes sorted by inserted at for an author.
-  """
   def list_quotes_by_author(author_id) do
     query =
       from(q in Quote,
