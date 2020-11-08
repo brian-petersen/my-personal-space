@@ -14,7 +14,7 @@ config :picoquotes, PicoquotesWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "Zm0bY+2g6Ywx2bQXfHi2vmK1JMKyDZ7VP3K+0G8/CzdINXskfUqH+gHBfKlxOvXP",
   render_errors: [view: PicoquotesWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Picoquotes.PubSub, adapter: Phoenix.PubSub.PG2],
+  pubsub_server: Picoquotes.PubSub,
   live_view: [signing_salt: "SEJ60pgc"]
 
 # Configures Elixir's Logger

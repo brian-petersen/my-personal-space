@@ -3,6 +3,7 @@ defmodule Picoquotes.Application do
 
   def start(_type, _args) do
     children = [
+      {Phoenix.PubSub, name: Picoquotes.PubSub},
       Picoquotes.Repo,
       PicoquotesWeb.Endpoint
     ]
