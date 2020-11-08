@@ -1,5 +1,5 @@
 ### app builder ###
-FROM hexpm/elixir:1.10.1-erlang-22.2.7-alpine-3.11.3 AS builder
+FROM hexpm/elixir:1.11.2-erlang-23.1.2-alpine-3.12.1 AS builder
 
 RUN apk add --no-cache --update build-base nodejs npm
 
