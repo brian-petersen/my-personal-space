@@ -23,8 +23,8 @@ defmodule PicoquotesWeb.Router do
 
     get "/", QuotesController, :index
     get "/author/:slug", AuthorsController, :show
-    resources "/authors", AuthorsController, only: [:new, :create]
-    resources "/quotes", QuotesController, only: [:new, :create, :delete]
-    resources "/sessions", SessionsController, only: [:new, :create, :delete], singleton: true
+    resources "/authors", AuthorsController, only: [:create, :new]
+    resources "/quotes", QuotesController, except: [:index, :show]
+    resources "/sessions", SessionsController, only: [:create, :delete, :new], singleton: true
   end
 end

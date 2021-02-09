@@ -5,7 +5,11 @@
       <%= link q.author.name, to: Routes.authors_path(@conn, :show, q.author.slug) %></li>
 
       <%= if signed_in?(@conn) do %>
-        <%= link "Delete", to: Routes.quotes_path(@conn, :delete, q.id), method: :delete, class: "text-danger float-right", data: [confirm: "Really delete?"] %></li>
+        <div class="float-right">
+          <%= link "Edit", to: Routes.quotes_path(@conn, :edit, q.id) %></li>
+          &middot;
+          <%= link "Delete", to: Routes.quotes_path(@conn, :delete, q.id), method: :delete, class: "text-danger", data: [confirm: "Really delete?"] %></li>
+        </div>
         <div class="clearfix"></div>
       <% end %>
     </div>

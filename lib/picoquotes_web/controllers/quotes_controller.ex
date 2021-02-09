@@ -8,17 +8,6 @@ defmodule PicoquotesWeb.QuotesController do
 
   plug Authenticate when action not in [:index]
 
-  def index(conn, _params) do
-    render(conn, "index.html", quotes: QuoteContext.list_quotes())
-  end
-
-  def new(conn, _params) do
-    changeset = Quote.build(%{})
-    authors = get_authors()
-
-    render(conn, "new.html", changeset: changeset, authors: authors)
-  end
-
   def create(conn, %{"quote" => quote_params}) do
     case QuoteContext.create_quote(quote_params) do
       {:ok, _} ->
@@ -31,7 +20,7 @@ defmodule PicoquotesWeb.QuotesController do
 
         conn
         |> put_flash(:error, "Failed to create quote.")
-        |> render("new.html", changeset: changeset, authors: authors)
+        |> render("new.html", authors: authors, changeset: changeset)
     end
   end
 
@@ -46,6 +35,45 @@ defmodule PicoquotesWeb.QuotesController do
         conn
         |> put_flash(:error, "Failed deleting quote.")
         |> redirect(to: Routes.quotes_path(conn, :index))
+    end
+  end
+
+  def edit(conn, %{"id" => id}) do
+    case QuoteContext.get_quote(id) do
+      {:ok, quote} ->
+        changeset = Quote.build(quote, %{})
+        authors = get_authors()
+        render(conn, "edit.html", authors: authors, changeset: changeset, quote_id: quote.id)
+
+      {:error, _} ->
+        send_resp(conn, 404, "Not found")
+    end
+  end
+
+  def index(conn, _params) do
+    render(conn, "index.html", quotes: QuoteContext.list_quotes())
+  end
+
+  def new(conn, _params) do
+    changeset = Quote.build(%{})
+    authors = get_authors()
+
+    render(conn, "new.html", authors: authors, changeset: changeset)
+  end
+
+  def update(conn, %{"id" => id, "quote" => quote_params}) do
+    case QuoteContext.update_quote(id, quote_params) do
+      {:ok, _} ->
+        conn
+        |> put_flash(:info, "Successfully edited quote.")
+        |> redirect(to: Routes.quotes_path(conn, :index))
+
+      {:error, changeset} ->
+        authors = get_authors()
+
+        conn
+        |> put_flash(:error, "Failed to edit quote.")
+        |> render("edit.html", authors: authors, changeset: changeset, quote_id: id)
     end
   end
 

@@ -10,6 +10,25 @@ defmodule Picoquotes.Contexts.QuoteContext do
     |> Repo.insert()
   end
 
+  def update_quote(quote_id, params) do
+    case get_quote(quote_id) do
+      {:ok, quote} ->
+        quote |> Quote.build(params) |> Repo.update()
+
+      error ->
+        error
+    end
+  end
+
+  def get_quote(quote_id) do
+    Quote
+    |> Repo.get(quote_id)
+    |> case do
+      nil -> {:error, "Quote not found"}
+      quote -> {:ok, quote}
+    end
+  end
+
   @doc """
   Returns all quotes sorted by inserted at with their author preloaded.
   """
