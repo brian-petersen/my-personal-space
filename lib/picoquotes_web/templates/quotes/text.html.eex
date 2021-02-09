@@ -1,0 +1,5 @@
+<%= if @quote.text_rendered != nil do %>
+  <%= raw(@quote.text_rendered) %>
+<% else %>
+  <p><%= @quote.text %></p>
+<% end %>

@@ -35,6 +35,7 @@ defmodule Picoquotes.MixProject do
     [
       {:bcrypt_elixir, "~> 2.2"},
       {:confex, "~> 3.4.0"},
+      {:earmark, "~> 1.4"},
       {:ecto_sql, "~> 3.5"},
       {:jason, "~> 1.0"},
       {:phoenix, "~> 1.5.0"},

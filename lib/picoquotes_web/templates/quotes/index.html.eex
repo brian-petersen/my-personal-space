@@ -1,7 +1,8 @@
 <%= for q <- @quotes do %>
   <div class="card mb-4">
     <div class="card-body">
-      <p><%= q.text %></p>
+      <%= render "text.html", quote: q %>
+
       <%= link q.author.name, to: Routes.authors_path(@conn, :show, q.author.slug) %></li>
 
       <%= if signed_in?(@conn) do %>
