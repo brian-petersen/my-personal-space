@@ -10,11 +10,17 @@ import css from "../css/app.scss"
 // Import dependencies
 import "phoenix_html"
 
-import "jquery"
+// bootstrap dependencies
+import "jquery/dist/jquery.slim"
 import "popper.js"
+
+// dismissable alerts
 import "bootstrap/js/dist/alert"
-import "bootstrap/js/dist/dropdown"
-import "bootstrap/js/dist/dropdown"
+
+// collapsible menu
+import "bootstrap/js/dist/collapse"
+
+// for selecting an author
 import "bootstrap-select"
 
 // Import local files
