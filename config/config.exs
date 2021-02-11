@@ -17,6 +17,9 @@ config :picoquotes, PicoquotesWeb.Endpoint,
   pubsub_server: Picoquotes.PubSub,
   live_view: [signing_salt: "SEJ60pgc"]
 
+# Other
+config :picoquotes, :pushbullet_api_token, {:system, :string, "PUSHBULLET_API_TOKEN"}
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",

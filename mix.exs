@@ -45,7 +45,8 @@ defmodule Picoquotes.MixProject do
       {:phoenix_pubsub, "~> 2.0"},
       {:plug_cowboy, "~> 2.1"},
       {:postgrex, ">= 0.0.0"},
-      {:slugify, "~> 1.3"}
+      {:slugify, "~> 1.3"},
+      {:tesla, "~> 1.4.0"}
     ]
   end
 
