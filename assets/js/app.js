@@ -21,6 +21,7 @@ import "bootstrap/js/dist/alert"
 import "bootstrap/js/dist/collapse"
 
 // for selecting an author
+import "bootstrap/js/dist/dropdown"
 import "bootstrap-select"
 
 // Import local files
