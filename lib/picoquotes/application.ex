@@ -5,6 +5,7 @@ defmodule Picoquotes.Application do
     children = [
       {Phoenix.PubSub, name: Picoquotes.PubSub},
       Picoquotes.Repo,
+      Picoquotes.Scheduler,
       PicoquotesWeb.Endpoint
     ]
 

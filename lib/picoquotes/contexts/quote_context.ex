@@ -29,6 +29,18 @@ defmodule Picoquotes.Contexts.QuoteContext do
     end
   end
 
+  def get_random_quote() do
+    query =
+      from(q in Quote,
+        join: a in assoc(q, :author),
+        order_by: fragment("random()"),
+        limit: 1,
+        preload: [author: a]
+      )
+
+    Repo.one(query)
+  end
+
   @doc """
   Returns all quotes sorted by inserted at with their author preloaded.
   """
