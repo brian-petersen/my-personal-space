@@ -1,6 +1,8 @@
 defmodule Picoquotes.Notifications.PushbulletClient do
   import Tesla, only: [post: 3]
 
+  @behaviour Picoquotes.Notifications.Client
+
   def create_link_push(title, body, url) do
     post(client(), "/pushes", %{
       type: "link",

@@ -1,7 +1,7 @@
 defmodule Picoquotes.Notifications do
   alias Picoquotes.Contexts.QuoteContext
   alias Picoquotes.Models.Quote
-  alias Picoquotes.Notifications.PushbulletClient
+  alias Picoquotes.Notifications.PushoverClient
 
   require Logger
 
@@ -11,7 +11,7 @@ defmodule Picoquotes.Notifications do
   Assumes that the quote's author is preloaded.
   """
   def send_quote_notification(%Quote{text: text, author: %{name: name}}) do
-    PushbulletClient.create_note_push("Quote of the Day", "#{text}\n- #{name}")
+    PushoverClient.create_note_push("Quote of the Day", "#{text}\n- #{name}")
   end
 
   def send_random_quote() do

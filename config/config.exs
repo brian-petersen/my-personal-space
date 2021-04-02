@@ -8,6 +8,9 @@ config :picoquotes,
 # Other
 config :picoquotes, :pushbullet_api_token, {:system, :string, "PUSHBULLET_API_TOKEN"}
 
+config :picoquotes, :pushover_api_token, {:system, :string, "PUSHOVER_API_TOKEN"}
+config :picoquotes, :pushover_user_token, {:system, :string, "PUSHOVER_USER_TOKEN"}
+
 config :picoquotes, Picoquotes.Scheduler,
   timezone: "America/Denver",
   jobs: [
