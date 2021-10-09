@@ -3,3 +3,7 @@
 <% else %>
   <p><%= @quote.text %></p>
 <% end %>
+
+<%= if @quote.source do %>
+  <%= render_source(@quote.source) %>
+<% end %>

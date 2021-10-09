@@ -8,6 +8,8 @@ defmodule Picoquotes.Models.Quote do
   schema "quotes" do
     field(:text, :string)
     field(:text_rendered, :string)
+    field(:source, :string)
+
     belongs_to(:author, Author)
 
     timestamps()
@@ -15,7 +17,7 @@ defmodule Picoquotes.Models.Quote do
 
   def build(struct \\ %__MODULE__{}, params) do
     struct
-    |> cast(params, [:text, :author_id])
+    |> cast(params, [:text, :author_id, :source])
     |> validate_required([:text, :author_id])
     |> assoc_constraint(:author)
     |> validate_and_render_text()
