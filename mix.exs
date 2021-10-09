@@ -33,22 +33,23 @@ defmodule Picoquotes.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:bcrypt_elixir, "~> 2.2"},
-      {:confex, "~> 3.4.0"},
+      {:bcrypt_elixir, "~> 2.3"},
+      {:confex, "~> 3.5"},
       {:earmark, "~> 1.4"},
-      {:ecto_sql, "~> 3.5"},
-      {:jason, "~> 1.0"},
-      {:phoenix, "~> 1.5.0"},
-      {:phoenix_ecto, "~> 4.2"},
-      {:phoenix_html, "~> 2.11"},
+      {:ecto_sql, "~> 3.7"},
+      {:esbuild, "~> 0.3.2", runtime: Mix.env() == :dev},
+      {:jason, "~> 1.2"},
+      {:phoenix, "~> 1.6.0"},
+      {:phoenix_ecto, "~> 4.4"},
+      {:phoenix_html, "~> 3.0"},
       {:phoenix_live_reload, "~> 1.3", only: :dev},
       {:phoenix_pubsub, "~> 2.0"},
-      {:plug_cowboy, "~> 2.1"},
+      {:plug_cowboy, "~> 2.5"},
       {:postgrex, ">= 0.0.0"},
-      {:quantum, "~> 3.0"},
+      {:quantum, "~> 3.4"},
       {:slugify, "~> 1.3"},
       {:tzdata, "~> 1.1"},
-      {:tesla, "~> 1.4.0"}
+      {:tesla, "~> 1.4"}
     ]
   end
 
@@ -60,6 +61,7 @@ defmodule Picoquotes.MixProject do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
+      "assets.deploy": ["esbuild default --minify", "phx.digest"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate", "test"]
