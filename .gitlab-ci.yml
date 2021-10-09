@@ -18,7 +18,7 @@ build:
       - master
 
 trigger_deploy:
-image: debian:10.2-slim
+  image: debian:10.2-slim
   stage: deploy
   script:
     # Install curl
