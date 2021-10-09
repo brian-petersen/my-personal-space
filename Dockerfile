@@ -25,11 +25,11 @@ RUN mix compile && \
     mix release
 
 ### final image ###
-FROM alpine:3.11.3
+FROM alpine:3.14.0
 
 WORKDIR /app
 
-RUN apk add --no-cache --update bash ncurses-libs 
+RUN apk add --no-cache --update bash libstdc++ ncurses-libs 
 
 COPY entrypoint.sh .
 RUN chmod 755 entrypoint.sh
