@@ -20,7 +20,7 @@ defmodule Picoquotes.MixProject do
   def application do
     [
       mod: {Picoquotes.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :os_mon]
     ]
   end
 
@@ -36,20 +36,25 @@ defmodule Picoquotes.MixProject do
       {:bcrypt_elixir, "~> 2.3"},
       {:confex, "~> 3.5"},
       {:earmark, "~> 1.4"},
+      {:ecto_psql_extras, "~> 0.7.1"},
       {:ecto_sql, "~> 3.7"},
       {:esbuild, "~> 0.3.2", runtime: Mix.env() == :dev},
       {:jason, "~> 1.2"},
       {:phoenix, "~> 1.6.0"},
       {:phoenix_ecto, "~> 4.4"},
       {:phoenix_html, "~> 3.0"},
+      {:phoenix_live_dashboard, "~> 0.5.3"},
       {:phoenix_live_reload, "~> 1.3", only: :dev},
+      {:phoenix_live_view, "~> 0.16.4"},
       {:phoenix_pubsub, "~> 2.0"},
       {:plug_cowboy, "~> 2.5"},
       {:postgrex, ">= 0.0.0"},
       {:quantum, "~> 3.4"},
       {:slugify, "~> 1.3"},
-      {:tzdata, "~> 1.1"},
-      {:tesla, "~> 1.4"}
+      {:telemetry_metrics, "~> 0.6.1"},
+      {:telemetry_poller, "~> 0.5.1"},
+      {:tesla, "~> 1.4"},
+      {:tzdata, "~> 1.1"}
     ]
   end
 

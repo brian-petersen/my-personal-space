@@ -6,6 +6,7 @@ defmodule Picoquotes.Application do
       {Phoenix.PubSub, name: Picoquotes.PubSub},
       Picoquotes.Repo,
       Picoquotes.Scheduler,
+      PicoquotesWeb.Telemetry,
       PicoquotesWeb.Endpoint
     ]
 

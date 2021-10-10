@@ -29,6 +29,9 @@
             </li>
           <% else %>
             <li class="nav-item">
+              <%= link "Dashboard", to: Routes.live_dashboard_path(@conn, :home), class: "nav-link" %>
+            </li>
+            <li class="nav-item">
               <%= link "Add Quote", to: Routes.quotes_path(@conn, :new), class: "nav-link" %>
             </li>
             <li class="nav-item">

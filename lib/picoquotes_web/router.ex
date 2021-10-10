@@ -1,9 +1,15 @@
 defmodule PicoquotesWeb.Router do
   use Phoenix.Router
 
-  alias PicoquotesWeb.{AuthorsController, SessionsController, QuotesController}
+  alias Picoquotes.Repo
+  alias PicoquotesWeb.AuthorsController
+  alias PicoquotesWeb.Plugs.Authenticate
+  alias PicoquotesWeb.QuotesController
+  alias PicoquotesWeb.SessionsController
+  alias PicoquotesWeb.Telemetry
 
   import Phoenix.Controller
+  import Phoenix.LiveDashboard.Router
   import Plug.Conn
 
   pipeline :browser do
@@ -12,6 +18,10 @@ defmodule PicoquotesWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+  end
+
+  pipeline :authenticated do
+    plug Authenticate
   end
 
   pipeline :api do
@@ -26,5 +36,11 @@ defmodule PicoquotesWeb.Router do
     resources "/authors", AuthorsController, only: [:create, :new]
     resources "/quotes", QuotesController, except: [:index, :show]
     resources "/sessions", SessionsController, only: [:create, :delete, :new], singleton: true
+  end
+
+  scope "/" do
+    pipe_through [:browser, :authenticated]
+
+    live_dashboard "/dashboard", ecto_repos: [Repo], metrics: Telemetry
   end
 end
