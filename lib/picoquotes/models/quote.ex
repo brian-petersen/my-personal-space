@@ -9,6 +9,7 @@ defmodule Picoquotes.Models.Quote do
     field(:text, :string)
     field(:text_rendered, :string)
     field(:source, :string)
+    field(:permalink, :string)
 
     belongs_to(:author, Author)
 
@@ -34,5 +35,11 @@ defmodule Picoquotes.Models.Quote do
       {:error, _html, _errors} ->
         add_error(changeset, :text, "Quote text contains improper markdown")
     end
+  end
+
+  def generate_permalink() do
+    16
+    |> :crypto.strong_rand_bytes()
+    |> Base.url_encode64(padding: false)
   end
 end

@@ -10,10 +10,10 @@ defmodule PicoquotesWeb.QuotesController do
 
   def create(conn, %{"quote" => quote_params}) do
     case QuoteContext.create_quote(quote_params) do
-      {:ok, _} ->
+      {:ok, %{permalink: permalink}} ->
         conn
         |> put_flash(:info, "Successfully created quote.")
-        |> redirect(to: Routes.quotes_path(conn, :index))
+        |> redirect(to: Routes.quotes_path(conn, :index) <> "##{permalink}")
 
       {:error, changeset} ->
         authors = get_authors()
@@ -61,12 +61,22 @@ defmodule PicoquotesWeb.QuotesController do
     render(conn, "new.html", authors: authors, changeset: changeset)
   end
 
+  def show(conn, %{"id" => permalink}) do
+    case QuoteContext.get_quote_by_permalink(permalink) do
+      {:ok, %{permalink: permalink}} ->
+        redirect(conn, to: Routes.quotes_path(conn, :index) <> "##{permalink}")
+
+      {:error, _} ->
+        send_resp(conn, 404, "Not found")
+    end
+  end
+
   def update(conn, %{"id" => id, "quote" => quote_params}) do
     case QuoteContext.update_quote(id, quote_params) do
-      {:ok, _} ->
+      {:ok, %{permalink: permalink}} ->
         conn
         |> put_flash(:info, "Successfully edited quote.")
-        |> redirect(to: Routes.quotes_path(conn, :index))
+        |> redirect(to: Routes.quotes_path(conn, :index) <> "##{permalink}")
 
       {:error, changeset} ->
         authors = get_authors()

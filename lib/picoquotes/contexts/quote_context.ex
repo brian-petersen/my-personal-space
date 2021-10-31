@@ -29,6 +29,15 @@ defmodule Picoquotes.Contexts.QuoteContext do
     end
   end
 
+  def get_quote_by_permalink(permalink) do
+    Quote
+    |> Repo.get_by(permalink: permalink)
+    |> case do
+      nil -> {:error, "Quote not found"}
+      quote -> {:ok, quote}
+    end
+  end
+
   def get_random_quote() do
     query =
       from(q in Quote,

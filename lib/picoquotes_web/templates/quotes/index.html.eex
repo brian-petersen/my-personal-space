@@ -5,14 +5,18 @@
 
       <%= link q.author.name, to: Routes.authors_path(@conn, :show, q.author.slug) %>
 
-      <%= if signed_in?(@conn) do %>
-        <div class="float-right">
-          <%= link "Edit", to: Routes.quotes_path(@conn, :edit, q.id) %>
+      <div class="float-right">
+        <%= link "Permalink", to: Routes.quotes_path(@conn, :show, q.permalink), class: "text-secondary" %>
+
+        <%= if signed_in?(@conn) do %>
+          &middot;
+          <%= link "Edit", to: Routes.quotes_path(@conn, :edit, q.id), class: "text-secondary" %>
+
           &middot;
           <%= link "Delete", to: Routes.quotes_path(@conn, :delete, q.id), method: :delete, class: "text-danger", data: [confirm: "Really delete?"] %>
-        </div>
-        <div class="clearfix"></div>
-      <% end %>
+        <% end %>
+      </div>
+      <div class="clearfix"></div>
     </div>
   </div>
 <% end %>
