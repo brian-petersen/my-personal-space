@@ -10,8 +10,15 @@ defmodule Picoquotes.Notifications do
 
   Assumes that the quote's author is preloaded.
   """
-  def send_quote_notification(%Quote{text: text, author: %{name: name}}) do
-    PushoverClient.create_note_push("Quote of the Day", "#{text}\n- #{name}")
+  def send_quote_notification(%Quote{} = quote) do
+    body = """
+    #{quote.text}
+
+    - #{quote.author.name}
+    (#{quote.source})
+    """
+
+    PushoverClient.create_note_push("Quote of the Day", body)
   end
 
   def send_random_quote() do
