@@ -6,7 +6,7 @@ defmodule PicoquotesWeb.QuotesController do
   alias PicoquotesWeb.Plugs.Authenticate
   alias PicoquotesWeb.Router.Helpers, as: Routes
 
-  plug Authenticate when action not in [:index]
+  plug Authenticate when action not in [:index, :show]
 
   def create(conn, %{"quote" => quote_params}) do
     case QuoteContext.create_quote(quote_params) do
