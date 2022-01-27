@@ -22,7 +22,7 @@ config :picoquotes, :pushover_user_token, {:system, :string, "PUSHOVER_USER_TOKE
 config :picoquotes, Picoquotes.Scheduler,
   timezone: "America/Denver",
   jobs: [
-    {"0 9 * * *", &Picoquotes.Notifications.send_random_quote/0}
+    # {"0 9 * * *", &Picoquotes.Notifications.send_random_quote/0}
   ]
 
 # Configures Ecto repos for project
