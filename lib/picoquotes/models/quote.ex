@@ -22,6 +22,13 @@ defmodule Picoquotes.Models.Quote do
     |> validate_required([:text, :author_id])
     |> assoc_constraint(:author)
     |> validate_and_render_text()
+    |> upsert_permalink()
+  end
+
+  defp generate_permalink() do
+    16
+    |> :crypto.strong_rand_bytes()
+    |> Base.url_encode64(padding: false)
   end
 
   defp validate_and_render_text(changeset) do
@@ -37,9 +44,13 @@ defmodule Picoquotes.Models.Quote do
     end
   end
 
-  def generate_permalink() do
-    16
-    |> :crypto.strong_rand_bytes()
-    |> Base.url_encode64(padding: false)
+  defp upsert_permalink(changeset) do
+    permalink = get_field(changeset, :permalink)
+
+    if permalink do
+      changeset
+    else
+      put_change(changeset, :permalink, generate_permalink())
+    end
   end
 end

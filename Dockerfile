@@ -1,5 +1,5 @@
 ### app builder ###
-FROM hexpm/elixir:1.12.3-erlang-24.1-alpine-3.14.0 AS builder
+FROM hexpm/elixir:1.13.3-erlang-24.2.1-alpine-3.15.0 AS builder
 
 RUN apk add --no-cache --update build-base
 
@@ -25,7 +25,7 @@ RUN mix compile && \
     mix release
 
 ### final image ###
-FROM alpine:3.14.0
+FROM alpine:3.15.0
 
 WORKDIR /app
 
