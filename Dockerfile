@@ -1,5 +1,5 @@
 ### app builder ###
-FROM hexpm/elixir:1.13.3-erlang-24.2.1-alpine-3.15.0 AS builder
+FROM hexpm/elixir:1.13.4-erlang-25.0.1-alpine-3.16.0 AS builder
 
 RUN apk add --no-cache --update build-base
 
@@ -25,11 +25,11 @@ RUN mix compile && \
     mix release
 
 ### final image ###
-FROM alpine:3.15.0
+FROM alpine:3.16.0
 
 WORKDIR /app
 
-RUN apk add --no-cache --update bash libstdc++ ncurses-libs 
+RUN apk add --no-cache --update bash libstdc++ ncurses-libs
 
 COPY entrypoint.sh .
 RUN chmod 755 entrypoint.sh
