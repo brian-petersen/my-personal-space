@@ -26,20 +26,19 @@ defmodule PicoquotesWeb.QuotesView do
               )
 
   def render_source(source_text) do
-    text =
-      if is_link?(source_text) do
-        ~E"""
-        <a href="<%= source_text %>" target="_blank">
-          <%= source_text %>
-        </a>
-        """
-      else
-        source_text
-      end
+    assigns = %{source_text: source_text}
 
-    ~E"""
+    ~H"""
     <p class="font-italic font-weight-light">
-      Source: <%= text %>
+      Source:
+
+      <%= if is_link?(@source_text) do %>
+        <a href={@source_text} target="_blank">
+          <%= @source_text %>
+        </a>
+      <% else %>
+        <%= source_text %>
+      <% end %>
     </p>
     """
   end
