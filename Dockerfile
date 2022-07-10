@@ -27,15 +27,15 @@ RUN mix compile && \
 ### final image ###
 FROM alpine:3.16.0
 
+ENV ECTO_IPV6 true
+ENV ERL_AFLAGS "-proto_dist inet6_tcp"
+
 WORKDIR /app
 
 RUN apk add --no-cache --update bash libstdc++ ncurses-libs
-
-COPY entrypoint.sh .
-RUN chmod 755 entrypoint.sh
 
 COPY --from=builder /app/_build/prod/rel/picoquotes .
 
 EXPOSE 4000
 
-CMD ["./entrypoint.sh"]
+CMD ["bin/picoquotes", "start"]

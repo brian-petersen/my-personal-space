@@ -1,0 +1,19 @@
+.dockerignore
+
+.git
+!.git/HEAD
+!.git/refs
+
+/cover/
+/doc/
+/test/
+/tmp/
+.elixir_ls
+
+# Mix artifacts
+/_build/
+/deps/
+*.ez
+
+# Generated on crash by the VM
+erl_crash.dump

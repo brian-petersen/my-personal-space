@@ -15,5 +15,8 @@ config :picoquotes, PicoquotesWeb.Endpoint,
   cache_static_manifest: "priv/static/cache_manifest.json",
   server: true
 
+config :picoquotes, Picoquotes.Repo,
+  socket_options: [:inet6]
+
 # Do not print debug messages in production
 config :logger, level: :info
