@@ -1,5 +1,5 @@
 ### app builder ###
-FROM hexpm/elixir:1.14.0-erlang-25.0.4-alpine-3.16.1 AS builder
+FROM hexpm/elixir:1.14.2-erlang-25.1.2-alpine-3.16.2 AS builder
 
 RUN apk add --no-cache --update build-base
 
@@ -25,7 +25,7 @@ RUN mix compile && \
     mix release
 
 ### final image ###
-FROM alpine:3.16.1
+FROM alpine:3.16.2
 
 ENV ECTO_IPV6 true
 ENV ERL_AFLAGS "-proto_dist inet6_tcp"
