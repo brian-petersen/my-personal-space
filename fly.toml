@@ -4,7 +4,7 @@ kill_timeout = 5
 processes = []
 
 [deploy]
-  release_command = "bin/picoquotes eval \"Picoquotes.Tasks.Migrate.run()\""
+  release_command = "bin/picoquotes eval \"Picoquotes.Release.migrate()\""
 
 # [env]
 #   PORT = "8080"
