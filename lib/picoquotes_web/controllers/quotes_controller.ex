@@ -6,7 +6,7 @@ defmodule PicoquotesWeb.QuotesController do
   alias PicoquotesWeb.Plugs.Authenticate
   alias PicoquotesWeb.Router.Helpers, as: Routes
 
-  plug Authenticate when action not in [:index, :show]
+  plug Authenticate when action not in [:index, :index_csv, :show]
 
   def create(conn, %{"quote" => quote_params}) do
     case QuoteContext.create_quote(quote_params) do
@@ -52,6 +52,22 @@ defmodule PicoquotesWeb.QuotesController do
 
   def index(conn, _params) do
     render(conn, "index.html", quotes: QuoteContext.list_quotes())
+  end
+
+  @spec index_csv(Plug.Conn.t(), any) :: Plug.Conn.t()
+  def index_csv(conn, _params) do
+    # TODO if this gets big, may need to stream the response
+    # instead of doing it all in one go with Enum.join().
+    csv_content =
+      QuoteContext.list_quotes()
+      |> Stream.map(&Quote.to_csv_map/1)
+      |> CSV.encode(headers: true)
+      |> Enum.to_list()
+      |> Enum.join()
+
+    conn
+    |> put_resp_content_type("text/plain")
+    |> send_resp(200, csv_content)
   end
 
   def new(conn, _params) do

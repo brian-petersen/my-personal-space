@@ -25,6 +25,14 @@ defmodule Picoquotes.Models.Quote do
     |> upsert_permalink()
   end
 
+  def to_csv_map(%__MODULE__{text: text, source: source, author: %Author{name: name}}) do
+    %{
+      text: text,
+      author: name,
+      source: source
+    }
+  end
+
   defp generate_permalink() do
     16
     |> :crypto.strong_rand_bytes()
