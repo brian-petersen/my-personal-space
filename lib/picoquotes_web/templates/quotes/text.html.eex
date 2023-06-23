@@ -6,6 +6,16 @@
   <% end %>
 
   <%= if @quote.source do %>
-    <%= render_source(@quote.source) %>
+    <p class="font-italic font-weight-light">
+      Source:
+
+      <%= if is_link?(@quote.source) do %>
+        <a href="<%= @quote.source %>" target="_blank">
+          <%= @quote.source %>
+        </a>
+      <% else %>
+        <%= @quote.source %>
+      <% end %>
+    </p>
   <% end %>
 </div>

@@ -6,9 +6,6 @@ processes = []
 [deploy]
   release_command = "bin/picoquotes eval \"Picoquotes.Release.migrate()\""
 
-# [env]
-#   PORT = "8080"
-
 [experimental]
   allowed_public_ports = []
   auto_rollback = true

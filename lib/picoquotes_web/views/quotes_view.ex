@@ -25,24 +25,6 @@ defmodule PicoquotesWeb.QuotesView do
                 "iu"
               )
 
-  def render_source(source_text) do
-    assigns = %{source_text: source_text}
-
-    ~H"""
-    <p class="font-italic font-weight-light">
-      Source:
-
-      <%= if is_link?(@source_text) do %>
-        <a href={@source_text} target="_blank">
-          <%= @source_text %>
-        </a>
-      <% else %>
-        <%= source_text %>
-      <% end %>
-    </p>
-    """
-  end
-
   defp is_link?(text) do
     Regex.match?(@link_regex, text)
   end
