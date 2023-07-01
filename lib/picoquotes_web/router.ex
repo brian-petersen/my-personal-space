@@ -33,7 +33,7 @@ defmodule PicoquotesWeb.Router do
 
     get "/", QuotesController, :index
     get "/author/:slug", AuthorsController, :show
-    resources "/authors", AuthorsController, only: [:create, :new]
+    resources "/authors", AuthorsController, only: [:create, :index, :new]
     get "/quotes.csv", QuotesController, :index_csv
     resources "/quotes", QuotesController, except: [:index]
     resources "/sessions", SessionsController, only: [:create, :delete, :new], singleton: true

@@ -1,0 +1,4 @@
+/* Removes blank space after quote's body text */
+.quote p:last-child {
+  margin-bottom: 0;
+}

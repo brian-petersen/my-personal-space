@@ -7,7 +7,7 @@ defmodule PicoquotesWeb.AuthorsController do
   alias PicoquotesWeb.Plugs.Authenticate
   alias PicoquotesWeb.Router.Helpers, as: Routes
 
-  plug Authenticate when action not in [:show]
+  plug Authenticate when action not in [:index, :show]
 
   def new(conn, _params) do
     changeset = Author.build(%{})
@@ -29,6 +29,12 @@ defmodule PicoquotesWeb.AuthorsController do
     end
   end
 
+  def index(conn, _params) do
+    grouped_authors = AuthorContext.list_authors_sorted() |> group_authors()
+
+      render(conn, "index.html", grouped_authors: grouped_authors)
+  end
+
   def show(conn, %{"slug" => slug} = _params) do
     with author when not is_nil(author) <- AuthorContext.get_author_by_slug(slug),
          quotes <- QuoteContext.list_quotes_by_author(author) do
@@ -40,6 +46,24 @@ defmodule PicoquotesWeb.AuthorsController do
         |> put_view(ErrorView)
         |> render("404.html")
     end
+  end
+
+  defp group_authors(authors) do
+    init_letter = fn grouped_authors, letter ->
+      if Map.has_key?(grouped_authors, letter) do
+        grouped_authors
+      else
+        Map.put(grouped_authors, letter, [])
+      end
+    end
+
+    Enum.reduce(authors, %{}, fn %Author{name: name} = author, grouped_authors ->
+      letter = name |> String.first() |> String.upcase()
+
+      grouped_authors
+      |> init_letter.(letter)
+      |> Map.update!(letter, &[author | &1])
+    end)
   end
 
   defp page_title(%{name: name} = _author) do
