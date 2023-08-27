@@ -1,5 +1,5 @@
-ARG elixir_version=1.15.0
-ARG erlang_version=26.0.1
+ARG elixir_version=1.15.4
+ARG erlang_version=26.0.2
 ARG alpine_version=3.18.2
 
 ### app builder ###
