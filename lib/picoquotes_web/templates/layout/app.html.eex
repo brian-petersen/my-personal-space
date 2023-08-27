@@ -50,16 +50,16 @@
   </nav>
 
   <div class="container mt-3">
-    <%= if get_flash(@conn, :info) do %>
+    <%= if Flash.get(@flash, :info) do %>
       <p class="alert alert-info alert-dismissable">
-        <%= get_flash(@conn, :info) %>
+        <%= Flash.get(@flash, :info) %>
         <button type="button" class="close" data-dismiss="alert">&times;</button>
       </p>
     <% end %>
 
-    <%= if get_flash(@conn, :error) do %>
+    <%= if Flash.get(@flash, :error) do %>
       <p class="alert alert-danger alert-dismissable">
-        <%= get_flash(@conn, :error) %>
+        <%= Flash.get(@flash, :error) %>
         <button type="button" class="close" data-dismiss="alert">&times;</button>
       </p>
     <% end %>
