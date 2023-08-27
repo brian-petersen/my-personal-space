@@ -32,7 +32,7 @@ defmodule PicoquotesWeb.AuthorsController do
   def index(conn, _params) do
     grouped_authors = AuthorContext.list_authors_sorted() |> group_authors()
 
-      render(conn, "index.html", grouped_authors: grouped_authors)
+    render(conn, "index.html", grouped_authors: grouped_authors)
   end
 
   def show(conn, %{"slug" => slug} = _params) do

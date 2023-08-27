@@ -6,6 +6,7 @@ defmodule PicoquotesWeb.Router do
   alias PicoquotesWeb.Plugs.Authenticate
   alias PicoquotesWeb.QuotesController
   alias PicoquotesWeb.SessionsController
+  alias PicoquotesWeb.SqlDashboard
   alias PicoquotesWeb.Telemetry
 
   import Phoenix.Controller
@@ -42,6 +43,9 @@ defmodule PicoquotesWeb.Router do
   scope "/" do
     pipe_through [:browser, :authenticated]
 
-    live_dashboard "/dashboard", ecto_repos: [Repo], metrics: Telemetry
+    live_dashboard "/dashboard",
+      ecto_repos: [Repo],
+      metrics: Telemetry,
+      additional_pages: [route_name: SqlDashboard]
   end
 end
