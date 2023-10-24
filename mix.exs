@@ -46,7 +46,7 @@ defmodule Picoquotes.MixProject do
       {:phoenix_html, "~> 3.0"},
       {:phoenix_live_dashboard, "~> 0.8.0"},
       {:phoenix_live_reload, "~> 1.3", only: :dev},
-      {:phoenix_live_view, "~> 0.19.3"},
+      {:phoenix_live_view, "~> 0.20.1"},
       {:phoenix_pubsub, "~> 2.0"},
       {:phoenix_view, "~> 2.0"},
       {:plug_cowboy, "~> 2.5"},
