@@ -46,6 +46,8 @@ defmodule PicoquotesWeb.Router do
     live_dashboard "/dashboard",
       ecto_repos: [Repo],
       metrics: Telemetry,
-      additional_pages: [route_name: SqlDashboard]
+      additional_pages: [
+        sql_dashboard: SqlDashboard
+      ]
   end
 end
