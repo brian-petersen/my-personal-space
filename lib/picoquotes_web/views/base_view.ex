@@ -16,7 +16,9 @@ defmodule PicoquotesWeb.BaseView do
       import PicoquotesWeb.ErrorHelpers
 
       # Use all HTML functionality (forms, tags, etc)
-      use Phoenix.HTML
+      import Phoenix.HTML
+      import Phoenix.HTML.Form
+      use PhoenixHTMLHelpers
     end
   end
 end
