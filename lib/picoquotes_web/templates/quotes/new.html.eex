@@ -1,1 +1,1 @@
-<%= render "form.html", Map.put(assigns, :action, Routes.quotes_path(@conn, :create)) %>
+<%= render "form.html", Map.put(assigns, :action, Routes.picoquotes_quotes_path(@conn, :create)) %>

@@ -20,7 +20,7 @@ defmodule PicoquotesWeb.AuthorsController do
       {:ok, _} ->
         conn
         |> put_flash(:info, "Successfully created author.")
-        |> redirect(to: Routes.quotes_path(conn, :index))
+        |> redirect(to: Routes.picoquotes_quotes_path(conn, :index))
 
       {:error, changeset} ->
         conn

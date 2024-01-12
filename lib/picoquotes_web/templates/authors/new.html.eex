@@ -1,4 +1,4 @@
-<%= form_for @changeset, Routes.authors_path(@conn, :create), fn f -> %>
+<%= form_for @changeset, Routes.picoquotes_authors_path(@conn, :create), fn f -> %>
   <div class="form-group">
     <label for="author_name">Author name</label>
     <%= text_input f, :name, class: "form-control" %>

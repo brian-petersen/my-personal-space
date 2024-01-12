@@ -13,7 +13,7 @@ defmodule PicoquotesWeb.QuotesController do
       {:ok, %{permalink: permalink}} ->
         conn
         |> put_flash(:info, "Successfully created quote.")
-        |> redirect(to: Routes.quotes_path(conn, :index) <> "##{permalink}")
+        |> redirect(to: Routes.picoquotes_quotes_path(conn, :index) <> "##{permalink}")
 
       {:error, changeset} ->
         authors = get_authors()
@@ -29,12 +29,12 @@ defmodule PicoquotesWeb.QuotesController do
       {:ok, _} ->
         conn
         |> put_flash(:info, "Successfully deleted quote.")
-        |> redirect(to: Routes.quotes_path(conn, :index))
+        |> redirect(to: Routes.picoquotes_quotes_path(conn, :index))
 
       {:error, _} ->
         conn
         |> put_flash(:error, "Failed deleting quote.")
-        |> redirect(to: Routes.quotes_path(conn, :index))
+        |> redirect(to: Routes.picoquotes_quotes_path(conn, :index))
     end
   end
 
@@ -56,8 +56,6 @@ defmodule PicoquotesWeb.QuotesController do
 
   @spec index_csv(Plug.Conn.t(), any) :: Plug.Conn.t()
   def index_csv(conn, _params) do
-    # TODO if this gets big, may need to stream the response
-    # instead of doing it all in one go with Enum.join().
     csv_content =
       QuoteContext.list_quotes()
       |> Stream.map(&Quote.to_csv_map/1)
@@ -80,7 +78,7 @@ defmodule PicoquotesWeb.QuotesController do
   def show(conn, %{"id" => permalink}) do
     case QuoteContext.get_quote_by_permalink(permalink) do
       {:ok, %{permalink: permalink}} ->
-        redirect(conn, to: Routes.quotes_path(conn, :index) <> "##{permalink}")
+        redirect(conn, to: Routes.picoquotes_quotes_path(conn, :index) <> "##{permalink}")
 
       {:error, _} ->
         send_resp(conn, 404, "Not found")
@@ -92,7 +90,7 @@ defmodule PicoquotesWeb.QuotesController do
       {:ok, %{permalink: permalink}} ->
         conn
         |> put_flash(:info, "Successfully edited quote.")
-        |> redirect(to: Routes.quotes_path(conn, :index) <> "##{permalink}")
+        |> redirect(to: Routes.picoquotes_quotes_path(conn, :index) <> "##{permalink}")
 
       {:error, changeset} ->
         authors = get_authors()

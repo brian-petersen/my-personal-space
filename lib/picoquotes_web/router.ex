@@ -3,6 +3,7 @@ defmodule PicoquotesWeb.Router do
 
   alias Picoquotes.Repo
   alias PicoquotesWeb.AuthorsController
+  alias PicoquotesWeb.PagesController
   alias PicoquotesWeb.Plugs.Authenticate
   alias PicoquotesWeb.QuotesController
   alias PicoquotesWeb.SessionsController
@@ -32,12 +33,30 @@ defmodule PicoquotesWeb.Router do
   scope "/" do
     pipe_through :browser
 
-    get "/", QuotesController, :index
-    get "/author/:slug", AuthorsController, :show
-    resources "/authors", AuthorsController, only: [:create, :index, :new]
-    get "/quotes.csv", QuotesController, :index_csv
-    resources "/quotes", QuotesController, except: [:index]
-    resources "/sessions", SessionsController, only: [:create, :delete, :new], singleton: true
+    get "/", PagesController, :home
+
+    resources "/sessions", SessionsController,
+      only: [
+        :create,
+        :delete,
+        :new
+      ],
+      singleton: true
+
+    scope "/picoquotes", as: :picoquotes do
+      get "/", QuotesController, :index
+      get "/quotes.csv", QuotesController, :index_csv
+      resources "/quotes", QuotesController, except: [:index]
+
+      resources "/authors", AuthorsController,
+        param: "slug",
+        only: [
+          :create,
+          :index,
+          :new,
+          :show
+        ]
+    end
   end
 
   scope "/" do

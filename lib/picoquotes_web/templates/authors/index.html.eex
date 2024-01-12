@@ -15,7 +15,7 @@
     <h3 id="<%= l %>"><%= l %></h3>
 
     <%= for author <- Enum.reverse(authors) do %>
-      <%= link author.name, to: Routes.authors_path(@conn, :show, author.slug) %><br>
+      <%= link author.name, to: Routes.picoquotes_authors_path(@conn, :show, author.slug) %><br>
     <% end %>
   </div>
 <% end %>

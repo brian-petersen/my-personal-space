@@ -5,7 +5,7 @@
   <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title><%= assigns[:page_title] || "Picoquotes" %></title>
+  <title><%= assigns[:page_title] || "Luckywatcher" %></title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.18/dist/css/bootstrap-select.min.css">
   <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/assets/app.css") %>"/>
@@ -15,7 +15,7 @@
 <body>
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container">
-      <a class="navbar-brand" href="/">Picoquotes</a>
+      <a class="navbar-brand" href="/">Luckywatcher</a>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav">
         <span class="navbar-toggler-icon"></span>
@@ -24,8 +24,9 @@
       <div class="collapse navbar-collapse" id="nav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <%= link "Authors", to: Routes.authors_path(@conn, :index), class: "nav-link" %>
+            <a class="nav-link" href="<%= Routes.picoquotes_quotes_path(@conn, :index) %>">Picoquotes</a>
           </li>
+
           <%= if not signed_in?(@conn) do %>
             <li class="nav-item">
               <a class="nav-link" href="<%= Routes.sessions_path(@conn, :new) %>">Sign In</a>
@@ -35,19 +36,44 @@
               <%= link "Dashboard", to: Routes.live_dashboard_path(@conn, :home), class: "nav-link" %>
             </li>
             <li class="nav-item">
-              <%= link "Add Quote", to: Routes.quotes_path(@conn, :new), class: "nav-link" %>
-            </li>
-            <li class="nav-item">
-              <%= link "Add Author", to: Routes.authors_path(@conn, :new), class: "nav-link" %>
-            </li>
-            <li class="nav-item">
-              <%= link "Sign Out", to: Routes.sessions_path(@conn, :delete), class: "nav-link", method: :delete %></li>
+              <%= link "Sign Out", to: Routes.sessions_path(@conn, :delete), class: "nav-link", method: :delete %>
             </li>
           <% end %>
         </ul>
       </div>
     </div>
   </nav>
+
+  <%= if String.starts_with?(@conn.request_path, "/picoquotes") do %>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-secondary">
+      <div class="container">
+        <div class="navbar-brand font-italic">Picoquotes</div>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#picoquotes-nav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="picoquotes-nav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <%= link "Quotes", to: Routes.picoquotes_quotes_path(@conn, :index), class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link "Authors", to: Routes.picoquotes_authors_path(@conn, :index), class: "nav-link" %>
+            </li>
+            <%= if signed_in?(@conn) do %>
+              <li class="nav-item">
+                <%= link "Add Quote", to: Routes.picoquotes_quotes_path(@conn, :new), class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link "Add Author", to: Routes.picoquotes_authors_path(@conn, :new), class: "nav-link" %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  <% end %>
 
   <div class="container mt-3">
     <%= if Flash.get(@flash, :info) do %>
