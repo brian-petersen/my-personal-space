@@ -1,4 +1,4 @@
-defmodule Picoquotes.Repo.Migrations.CreateAuthors do
+defmodule MyPersonalSpace.Repo.Migrations.CreateAuthors do
   use Ecto.Migration
 
   def change do

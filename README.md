@@ -1,4 +1,4 @@
-# Picoquotes
+# MyPersonalSpace
 
 To start your Phoenix server:
 

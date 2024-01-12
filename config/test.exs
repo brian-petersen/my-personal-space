@@ -2,7 +2,7 @@ import Config
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
-config :picoquotes, PicoquotesWeb.Endpoint,
+config :my_personal_space, MyPersonalSpaceWeb.Endpoint,
   http: [port: 4002],
   server: false
 

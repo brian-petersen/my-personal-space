@@ -1,4 +1,4 @@
-defmodule Picoquotes.Repo.Migrations.AddSourceToQuotes do
+defmodule MyPersonalSpace.Repo.Migrations.AddSourceToQuotes do
   use Ecto.Migration
 
   def change do

@@ -1,4 +1,4 @@
-defmodule Picoquotes.Repo.Migrations.AddPermalinkToQuotes do
+defmodule MyPersonalSpace.Repo.Migrations.AddPermalinkToQuotes do
   use Ecto.Migration
 
   def up do

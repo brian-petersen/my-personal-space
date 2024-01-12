@@ -38,8 +38,8 @@ WORKDIR /app
 
 RUN apk add --no-cache --update bash libstdc++ ncurses-libs
 
-COPY --from=builder /app/_build/prod/rel/picoquotes .
+COPY --from=builder /app/_build/prod/rel/my_personal_space .
 
 EXPOSE 4000
 
-CMD ["bin/picoquotes", "start"]
+CMD ["bin/my_personal_space", "start"]

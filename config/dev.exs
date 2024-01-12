@@ -6,7 +6,7 @@ import Config
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
-config :picoquotes, PicoquotesWeb.Endpoint,
+config :my_personal_space, MyPersonalSpaceWeb.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
@@ -16,12 +16,12 @@ config :picoquotes, PicoquotesWeb.Endpoint,
   ]
 
 # Watch static and templates for browser reloading.
-config :picoquotes, PicoquotesWeb.Endpoint,
+config :my_personal_space, MyPersonalSpaceWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
-      ~r"lib/picoquotes_web/(live|views)/.*(ex)$",
-      ~r"lib/picoquotes_web/templates/.*(eex)$"
+      ~r"lib/my_personal_space_web/(live|views)/.*(ex)$",
+      ~r"lib/my_personal_space_web/templates/.*(eex)$"
     ]
   ]
 

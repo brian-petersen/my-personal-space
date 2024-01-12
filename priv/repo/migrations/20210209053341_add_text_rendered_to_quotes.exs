@@ -1,4 +1,4 @@
-defmodule Picoquotes.Repo.Migrations.AddTextRenderedToQuotes do
+defmodule MyPersonalSpace.Repo.Migrations.AddTextRenderedToQuotes do
   use Ecto.Migration
 
   def change do

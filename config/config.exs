@@ -9,32 +9,32 @@ config :esbuild,
   ]
 
 # Configures the database url
-config :picoquotes,
+config :my_personal_space,
        :database_url,
-       {:system, :string, "DATABASE_URL", "ecto://postgres:postgres@localhost/picoquotes"}
+       {:system, :string, "DATABASE_URL", "ecto://postgres:postgres@localhost/my_personal_space"}
 
 # Other
-config :picoquotes, :pushbullet_api_token, {:system, :string, "PUSHBULLET_API_TOKEN"}
+config :my_personal_space, :pushbullet_api_token, {:system, :string, "PUSHBULLET_API_TOKEN"}
 
-config :picoquotes, :pushover_api_token, {:system, :string, "PUSHOVER_API_TOKEN"}
-config :picoquotes, :pushover_user_token, {:system, :string, "PUSHOVER_USER_TOKEN"}
+config :my_personal_space, :pushover_api_token, {:system, :string, "PUSHOVER_API_TOKEN"}
+config :my_personal_space, :pushover_user_token, {:system, :string, "PUSHOVER_USER_TOKEN"}
 
-config :picoquotes, Picoquotes.Scheduler,
+config :my_personal_space, MyPersonalSpace.Scheduler,
   timezone: "America/Denver",
   jobs: [
-    # {"0 9 * * *", &Picoquotes.Notifications.send_random_quote/0}
+    # {"0 9 * * *", &MyPersonalSpace.Notifications.send_random_quote/0}
   ]
 
 # Configures Ecto repos for project
-config :picoquotes,
-  ecto_repos: [Picoquotes.Repo]
+config :my_personal_space,
+  ecto_repos: [MyPersonalSpace.Repo]
 
 # Configures the endpoint
-config :picoquotes, PicoquotesWeb.Endpoint,
+config :my_personal_space, MyPersonalSpaceWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "Zm0bY+2g6Ywx2bQXfHi2vmK1JMKyDZ7VP3K+0G8/CzdINXskfUqH+gHBfKlxOvXP",
-  render_errors: [view: PicoquotesWeb.ErrorView, accepts: ~w(html json)],
-  pubsub_server: Picoquotes.PubSub,
+  render_errors: [view: MyPersonalSpaceWeb.ErrorView, accepts: ~w(html json)],
+  pubsub_server: MyPersonalSpace.PubSub,
   live_view: [signing_salt: "SEJ60pgc"]
 
 # Configures Elixir's Logger

@@ -1,10 +1,10 @@
-app = "picoquotes"
+app = "my-personal-space"
 kill_signal = "SIGTERM"
 kill_timeout = 5
 processes = []
 
 [deploy]
-  release_command = "bin/picoquotes eval \"Picoquotes.Release.migrate()\""
+  release_command = "bin/my_personal_space eval \"MyPersonalSpace.Release.migrate()\""
 
 [experimental]
   allowed_public_ports = []

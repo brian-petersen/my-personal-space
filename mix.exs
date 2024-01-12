@@ -1,9 +1,9 @@
-defmodule Picoquotes.MixProject do
+defmodule MyPersonalSpace.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :picoquotes,
+      app: :my_personal_space,
       version: "0.1.0",
       elixir: "~> 1.10",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -19,7 +19,7 @@ defmodule Picoquotes.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {Picoquotes.Application, []},
+      mod: {MyPersonalSpace.Application, []},
       extra_applications: [:logger, :runtime_tools, :os_mon]
     ]
   end

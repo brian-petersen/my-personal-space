@@ -1,4 +1,4 @@
-alias Picoquotes.Contexts.{AuthorContext, QuoteContext, UserContext}
+alias MyPersonalSpace.Contexts.{AuthorContext, QuoteContext, UserContext}
 
 {:ok, _user} = UserContext.create_user(%{username: "username", password: "password"})
 
