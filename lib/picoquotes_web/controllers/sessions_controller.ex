@@ -16,7 +16,7 @@ defmodule PicoquotesWeb.SessionsController do
       |> put_flash(:info, "Welcome back, my friend!")
       |> put_session(:user_id, user.id)
       |> configure_session(renew: true)
-      |> redirect(to: Routes.picoquotes_quotes_path(conn, :index))
+      |> redirect(to: Routes.pages_path(conn, :home))
     else
       _ ->
         conn
@@ -30,6 +30,6 @@ defmodule PicoquotesWeb.SessionsController do
     |> clear_session()
     |> put_flash(:info, "Successfully signed out, my friend.")
     |> configure_session(renew: true)
-    |> redirect(to: Routes.picoquotes_quotes_path(conn, :index))
+    |> redirect(to: Routes.pages_path(conn, :home))
   end
 end
