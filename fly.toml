@@ -3,12 +3,21 @@ kill_signal = "SIGTERM"
 kill_timeout = 5
 processes = []
 
-[deploy]
-  release_command = "bin/my_personal_space eval \"MyPersonalSpace.Release.migrate()\""
+# TODO figure out how to apply migrations with sqlite
+# Manual steps in mean time:
+#   1. fly ssh console
+#   2. bin/my_personal_space remote
+#   3. MyPersonalSpace.Release.migrate()
+# [deploy]
+#   release_command = "bin/my_personal_space eval \"MyPersonalSpace.Release.migrate()\""
 
 [experimental]
   allowed_public_ports = []
   auto_rollback = true
+
+[mounts]
+  source="sqlite_data"
+  destination="/app/db"
 
 [[services]]
   http_checks = []

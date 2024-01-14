@@ -8,11 +8,6 @@ config :esbuild,
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
   ]
 
-# Configures the database url
-config :my_personal_space,
-       :database_url,
-       {:system, :string, "DATABASE_URL", "ecto://postgres:postgres@localhost/my_personal_space"}
-
 # Other
 config :my_personal_space, :pushbullet_api_token, {:system, :string, "PUSHBULLET_API_TOKEN"}
 
@@ -28,6 +23,8 @@ config :my_personal_space, MyPersonalSpace.Scheduler,
 # Configures Ecto repos for project
 config :my_personal_space,
   ecto_repos: [MyPersonalSpace.Repo]
+
+config :my_personal_space, MyPersonalSpace.Repo, database: "db/my_personal_space.db"
 
 # Configures the endpoint
 config :my_personal_space, MyPersonalSpaceWeb.Endpoint,

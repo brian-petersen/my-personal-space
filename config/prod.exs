@@ -15,7 +15,5 @@ config :my_personal_space, MyPersonalSpaceWeb.Endpoint,
   cache_static_manifest: "priv/static/cache_manifest.json",
   server: true
 
-config :my_personal_space, MyPersonalSpace.Repo, socket_options: [:inet6]
-
 # Do not print debug messages in production
 config :logger, level: :info
