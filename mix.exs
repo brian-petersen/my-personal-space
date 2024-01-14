@@ -38,6 +38,7 @@ defmodule MyPersonalSpace.MixProject do
       {:csv, "~> 3.0"},
       {:earmark, "~> 1.4"},
       {:ecto_sqlite3, "~> 0.14"},
+      {:ecto_sqlite3_extras, "~> 1.2.0"},
       {:esbuild, "~> 0.4", runtime: Mix.env() == :dev},
       {:jason, "~> 1.2"},
       {:phoenix, "~> 1.6"},
