@@ -9,6 +9,10 @@ defmodule MyPersonalSpaceWeb.BaseView do
         root: "lib/my_personal_space_web/templates",
         namespace: MyPersonalSpaceWeb
 
+      use Phoenix.VerifiedRoutes,
+        router: MyPersonalSpaceWeb.Router,
+        endpoint: MyPersonalSpaceWeb.Endpoint
+
       alias Phoenix.Flash
       alias MyPersonalSpaceWeb.Router.Helpers, as: Routes
 
