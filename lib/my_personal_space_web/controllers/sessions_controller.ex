@@ -10,18 +10,20 @@ defmodule MyPersonalSpaceWeb.SessionsController do
   end
 
   def create(conn, %{"username" => username, "password" => password} = _params) do
+    redirect = get_referer_redirect(conn)
+
     with user when not is_nil(user) <- UserContext.get_user_by_username(username),
          true <- User.has_password?(user, password) do
       conn
       |> put_flash(:info, "Welcome back, my friend!")
       |> put_session(:user_id, user.id)
       |> configure_session(renew: true)
-      |> redirect(to: Routes.pages_path(conn, :home))
+      |> redirect(to: redirect)
     else
       _ ->
         conn
         |> put_flash(:error, "Invalid username or password.")
-        |> redirect(to: Routes.sessions_path(conn, :new, username: username))
+        |> redirect(to: Routes.sessions_path(conn, :new, username: username, redirect: redirect))
     end
   end
 
@@ -30,6 +32,30 @@ defmodule MyPersonalSpaceWeb.SessionsController do
     |> clear_session()
     |> put_flash(:info, "Successfully signed out, my friend.")
     |> configure_session(renew: true)
-    |> redirect(to: Routes.pages_path(conn, :home))
+    |> redirect(to: get_signout_redirect(conn))
+  end
+
+  defp get_referer_redirect(conn) do
+    with [referer] <- Plug.Conn.get_req_header(conn, "referer"),
+         uri <- URI.parse(referer),
+         query when not is_nil(query) <- Map.get(uri, :query),
+         decoded <- URI.decode_query(query),
+         redirect when not is_nil(redirect) <- Map.get(decoded, "redirect") do
+      redirect
+    else
+      _ ->
+        Routes.pages_path(conn, :home)
+    end
+  end
+
+  defp get_signout_redirect(conn) do
+    with [referer] <- Plug.Conn.get_req_header(conn, "referer"),
+         uri <- URI.parse(referer),
+         path when not is_nil(path) <- Map.get(uri, :path) do
+      path
+    else
+      _ ->
+        Routes.pages_path(conn, :home)
+    end
   end
 end

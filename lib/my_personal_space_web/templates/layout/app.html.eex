@@ -29,7 +29,7 @@
 
           <%= if not signed_in?(@conn) do %>
             <li class="nav-item">
-              <a class="nav-link" href="<%= Routes.sessions_path(@conn, :new) %>">Sign In</a>
+              <a class="nav-link" href="<%= ~p"/sessions/new?redirect=#{@conn.request_path}" %>">Sign In</a>
             </li>
           <% else %>
             <li class="nav-item">
@@ -47,7 +47,7 @@
   <%= if String.starts_with?(@conn.request_path, "/picoquotes") do %>
     <nav class="navbar navbar-expand-sm navbar-dark bg-secondary">
       <div class="container">
-        <div class="navbar-brand font-italic">Picoquotes</div>
+        <a class="navbar-brand font-italic" href="<%= ~p"/picoquotes" %>">Picoquotes</a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#picoquotes-nav">
           <span class="navbar-toggler-icon"></span>
