@@ -43,9 +43,9 @@ defmodule MyPersonalSpaceWeb.Router do
       ],
       singleton: true
 
+    get "/quotes.csv", QuotesController, :index_csv
     scope "/quotes", as: :quotes do
       get "/", QuotesController, :index
-      get "/quotes.csv", QuotesController, :index_csv
       resources "/quotes", QuotesController, except: [:index]
 
       resources "/authors", AuthorsController,
