@@ -24,7 +24,7 @@
       <div class="collapse navbar-collapse" id="nav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="<%= Routes.picoquotes_quotes_path(@conn, :index) %>">Picoquotes</a>
+            <a class="nav-link" href="<%= Routes.quotes_quotes_path(@conn, :index) %>">Quotes</a>
           </li>
 
           <%= if not signed_in?(@conn) do %>
@@ -44,29 +44,29 @@
     </div>
   </nav>
 
-  <%= if String.starts_with?(@conn.request_path, "/picoquotes") do %>
+  <%= if String.starts_with?(@conn.request_path, "/quotes") do %>
     <nav class="navbar navbar-expand-sm navbar-dark bg-secondary">
       <div class="container">
-        <a class="navbar-brand font-italic" href="<%= ~p"/picoquotes" %>">Picoquotes</a>
+        <a class="navbar-brand font-italic" href="<%= ~p"/quotes" %>">Quotes</a>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#picoquotes-nav">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#quotes-nav">
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="picoquotes-nav">
+        <div class="collapse navbar-collapse" id="quotes-nav">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <%= link "Quotes", to: Routes.picoquotes_quotes_path(@conn, :index), class: "nav-link" %>
+              <%= link "Quotes", to: Routes.quotes_quotes_path(@conn, :index), class: "nav-link" %>
             </li>
             <li class="nav-item">
-              <%= link "Authors", to: Routes.picoquotes_authors_path(@conn, :index), class: "nav-link" %>
+              <%= link "Authors", to: Routes.quotes_authors_path(@conn, :index), class: "nav-link" %>
             </li>
             <%= if signed_in?(@conn) do %>
               <li class="nav-item">
-                <%= link "Add Quote", to: Routes.picoquotes_quotes_path(@conn, :new), class: "nav-link" %>
+                <%= link "Add Quote", to: Routes.quotes_quotes_path(@conn, :new), class: "nav-link" %>
               </li>
               <li class="nav-item">
-                <%= link "Add Author", to: Routes.picoquotes_authors_path(@conn, :new), class: "nav-link" %>
+                <%= link "Add Author", to: Routes.quotes_authors_path(@conn, :new), class: "nav-link" %>
               </li>
             <% end %>
           </ul>

@@ -43,7 +43,7 @@ defmodule MyPersonalSpaceWeb.Router do
       ],
       singleton: true
 
-    scope "/picoquotes", as: :picoquotes do
+    scope "/quotes", as: :quotes do
       get "/", QuotesController, :index
       get "/quotes.csv", QuotesController, :index_csv
       resources "/quotes", QuotesController, except: [:index]

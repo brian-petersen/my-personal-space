@@ -3,17 +3,17 @@
     <div class="card-body">
       <%= render "text.html", quote: q %>
 
-      <%= link q.author.name, to: Routes.picoquotes_authors_path(@conn, :show, q.author.slug) %>
+      <%= link q.author.name, to: Routes.quotes_authors_path(@conn, :show, q.author.slug) %>
 
       <div class="float-right">
-        <%= link "Permalink", to: Routes.picoquotes_quotes_path(@conn, :show, q.permalink), class: "text-secondary" %>
+        <%= link "Permalink", to: Routes.quotes_quotes_path(@conn, :show, q.permalink), class: "text-secondary" %>
 
         <%= if signed_in?(@conn) do %>
           &middot;
-          <%= link "Edit", to: Routes.picoquotes_quotes_path(@conn, :edit, q.id), class: "text-secondary" %>
+          <%= link "Edit", to: Routes.quotes_quotes_path(@conn, :edit, q.id), class: "text-secondary" %>
 
           &middot;
-          <%= link "Delete", to: Routes.picoquotes_quotes_path(@conn, :delete, q.id), method: :delete, class: "text-danger", data: [confirm: "Really delete?"] %>
+          <%= link "Delete", to: Routes.quotes_quotes_path(@conn, :delete, q.id), method: :delete, class: "text-danger", data: [confirm: "Really delete?"] %>
         <% end %>
       </div>
       <div class="clearfix"></div>

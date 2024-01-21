@@ -13,7 +13,7 @@ defmodule MyPersonalSpaceWeb.QuotesController do
       {:ok, %{permalink: permalink}} ->
         conn
         |> put_flash(:info, "Successfully created quote.")
-        |> redirect(to: Routes.picoquotes_quotes_path(conn, :index) <> "##{permalink}")
+        |> redirect(to: Routes.quotes_quotes_path(conn, :index) <> "##{permalink}")
 
       {:error, changeset} ->
         authors = get_authors()
@@ -29,12 +29,12 @@ defmodule MyPersonalSpaceWeb.QuotesController do
       {:ok, _} ->
         conn
         |> put_flash(:info, "Successfully deleted quote.")
-        |> redirect(to: Routes.picoquotes_quotes_path(conn, :index))
+        |> redirect(to: Routes.quotes_quotes_path(conn, :index))
 
       {:error, _} ->
         conn
         |> put_flash(:error, "Failed deleting quote.")
-        |> redirect(to: Routes.picoquotes_quotes_path(conn, :index))
+        |> redirect(to: Routes.quotes_quotes_path(conn, :index))
     end
   end
 
@@ -78,7 +78,7 @@ defmodule MyPersonalSpaceWeb.QuotesController do
   def show(conn, %{"id" => permalink}) do
     case QuoteContext.get_quote_by_permalink(permalink) do
       {:ok, %{permalink: permalink}} ->
-        redirect(conn, to: Routes.picoquotes_quotes_path(conn, :index) <> "##{permalink}")
+        redirect(conn, to: Routes.quotes_quotes_path(conn, :index) <> "##{permalink}")
 
       {:error, _} ->
         send_resp(conn, 404, "Not found")
@@ -90,7 +90,7 @@ defmodule MyPersonalSpaceWeb.QuotesController do
       {:ok, %{permalink: permalink}} ->
         conn
         |> put_flash(:info, "Successfully edited quote.")
-        |> redirect(to: Routes.picoquotes_quotes_path(conn, :index) <> "##{permalink}")
+        |> redirect(to: Routes.quotes_quotes_path(conn, :index) <> "##{permalink}")
 
       {:error, changeset} ->
         authors = get_authors()
