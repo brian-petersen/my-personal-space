@@ -2,6 +2,7 @@ alias MyPersonalSpace.Contexts.{AuthorContext, QuoteContext, UserContext}
 
 {:ok, _user} = UserContext.create_user(%{username: "username", password: "password"})
 
+{:ok, _} = AuthorContext.create_author(%{name: "Mr. Nobody"})
 {:ok, saint_augustine} = AuthorContext.create_author(%{name: "Saint Augustine"})
 {:ok, john_lennon} = AuthorContext.create_author(%{name: "John Lennon"})
 

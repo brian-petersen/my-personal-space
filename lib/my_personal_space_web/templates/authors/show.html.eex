@@ -5,9 +5,5 @@
 <% end %>
 
 <%= for q <- @quotes do %>
-  <div class="quote card mb-4">
-    <div class="card-body">
-      <%= render MyPersonalSpaceWeb.QuotesView, "text.html", quote: q %>
-    </div>
-  </div>
+  <%= render MyPersonalSpaceWeb.QuotesView, "card.html", conn: @conn, quote: q, show_author: false %>
 <% end %>

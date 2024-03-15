@@ -28,4 +28,12 @@ defmodule MyPersonalSpaceWeb.QuotesView do
   defp is_link?(text) do
     Regex.match?(@link_regex, text)
   end
+
+  defp actions_class(show_author) do
+    if show_author do
+      "float-right"
+    else
+      "float-left"
+    end
+  end
 end

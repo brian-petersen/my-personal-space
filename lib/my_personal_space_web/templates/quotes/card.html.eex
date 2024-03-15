@@ -1,0 +1,43 @@
+<div id="<%= @quote.permalink %>" class="card mb-4">
+  <div class="card-body">
+    <section>
+      <%= if @quote.text_rendered != nil do %>
+        <%= raw(@quote.text_rendered) %>
+      <% else %>
+        <p><%= @quote.text %></p>
+      <% end %>
+    </section>
+
+    <%= if @quote.source do %>
+      <p class="font-italic font-weight-light">
+        Source:
+
+        <%= if is_link?(@quote.source) do %>
+          <a href="<%= @quote.source %>" target="_blank">
+            <%= @quote.source %>
+          </a>
+        <% else %>
+          <%= @quote.source %>
+        <% end %>
+      </p>
+    <% end %>
+
+    <%= if @show_author do %>
+      <div class="float-left"><%= link @quote.author.name, to: Routes.quotes_authors_path(@conn, :show, @quote.author.slug) %></div>
+    <% end %>
+
+    <div class="<%= actions_class(@show_author) %>">
+      <%= link "Permalink", to: Routes.quotes_quotes_path(@conn, :show, @quote.permalink), class: "text-secondary" %>
+
+      <%= if signed_in?(@conn) do %>
+        &middot;
+        <%= link "Edit", to: Routes.quotes_quotes_path(@conn, :edit, @quote.id), class: "text-secondary" %>
+
+        &middot;
+        <%= link "Delete", to: Routes.quotes_quotes_path(@conn, :delete, @quote.id), method: :delete, class: "text-danger", data: [confirm: "Really delete?"] %>
+      <% end %>
+    </div>
+
+    <div class="clearfix"></div>
+  </div>
+</div>
