@@ -1,12 +1,8 @@
 defmodule MyPersonalSpaceWeb.SearchController do
   use Phoenix.Controller
 
-  # alias MyPersonalSpace.Contexts.{AuthorContext, QuoteContext}
   alias MyPersonalSpace.Search
   alias MyPersonalSpaceWeb.ErrorView
-  # alias MyPersonalSpaceWeb.ErrorView
-  # alias MyPersonalSpaceWeb.Plugs.Authenticate
-  # alias MyPersonalSpaceWeb.Router.Helpers, as: Routes
 
   def search(conn, params) do
     query = Map.get(params, "query", nil)

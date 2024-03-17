@@ -1,0 +1,1 @@
+<%= render "card.html", conn: @conn, quote: @quote, show_author: true %>

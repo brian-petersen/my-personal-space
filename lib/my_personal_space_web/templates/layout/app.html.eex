@@ -25,7 +25,7 @@
       <div class="collapse navbar-collapse" id="nav">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="<%= Routes.quotes_quotes_path(@conn, :index) %>">Quotes</a>
+            <a class="nav-link" href="<%= ~p"/quotes" %>">Quotes</a>
           </li>
 
           <%= if not signed_in?(@conn) do %>
@@ -61,17 +61,20 @@
         <div class="collapse navbar-collapse" id="quotes-nav">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <%= link "Quotes", to: Routes.quotes_quotes_path(@conn, :index), class: "nav-link" %>
+              <%= link "Quotes", to: ~p"/quotes", class: "nav-link" %>
             </li>
             <li class="nav-item">
-              <%= link "Authors", to: Routes.quotes_authors_path(@conn, :index), class: "nav-link" %>
+              <%= link "Authors", to: ~p"/quotes/authors", class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link "Random", to: ~p"/quotes/random", class: "nav-link" %>
             </li>
             <%= if signed_in?(@conn) do %>
               <li class="nav-item">
-                <%= link "Add Quote", to: Routes.quotes_quotes_path(@conn, :new), class: "nav-link" %>
+                <%= link "Add Quote", to: ~p"/quotes/quotes/new", class: "nav-link" %>
               </li>
               <li class="nav-item">
-                <%= link "Add Author", to: Routes.quotes_authors_path(@conn, :new), class: "nav-link" %>
+                <%= link "Add Author", to: ~p"/quotes/authors/new", class: "nav-link" %>
               </li>
             <% end %>
           </ul>

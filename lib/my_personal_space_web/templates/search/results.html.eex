@@ -22,7 +22,7 @@
   <%= if @quotes != [] do %>
     <ul class="pt-2">
       <%= for q <- @quotes do %>
-        <li><a href="<%= ~p"/quotes##{q.permalink}" %>"><%= q.text %></a></li>
+        <li><a href="<%= ~p"/quotes/#{q.permalink}" %>"><%= q.text %></a></li>
       <% end %>
     </ul>
   <% else %>

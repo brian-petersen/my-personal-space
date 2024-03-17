@@ -50,7 +50,9 @@ defmodule MyPersonalSpaceWeb.Router do
 
     scope "/quotes", as: :quotes do
       get "/", QuotesController, :index
-      resources "/quotes", QuotesController, except: [:index]
+      get "/random", QuotesController, :random
+
+      resources "/quotes", QuotesController, except: [:index, :show]
 
       resources "/authors", AuthorsController,
         param: "slug",
@@ -60,6 +62,8 @@ defmodule MyPersonalSpaceWeb.Router do
           :new,
           :show
         ]
+
+      get "/:id", QuotesController, :show
     end
   end
 

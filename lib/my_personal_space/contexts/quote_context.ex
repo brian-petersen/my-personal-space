@@ -30,8 +30,12 @@ defmodule MyPersonalSpace.Contexts.QuoteContext do
   end
 
   def get_quote_by_permalink(permalink) do
-    Quote
-    |> Repo.get_by(permalink: permalink)
+    from(q in Quote,
+      where: q.permalink == ^permalink,
+      preload: [:author],
+      limit: 1
+    )
+    |> Repo.one()
     |> case do
       nil -> {:error, "Quote not found"}
       quote -> {:ok, quote}

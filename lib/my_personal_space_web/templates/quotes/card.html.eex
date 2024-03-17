@@ -23,18 +23,18 @@
     <% end %>
 
     <%= if @show_author do %>
-      <div class="float-left"><%= link @quote.author.name, to: Routes.quotes_authors_path(@conn, :show, @quote.author.slug) %></div>
+      <div class="float-left"><%= link @quote.author.name, to: ~p"/quotes/authors/#{@quote.author.slug}" %></div>
     <% end %>
 
     <div class="<%= actions_class(@show_author) %>">
-      <%= link "Permalink", to: Routes.quotes_quotes_path(@conn, :show, @quote.permalink), class: "text-secondary" %>
+      <%= link "Permalink", to: ~p"/quotes/#{@quote.permalink}", class: "text-secondary" %>
 
       <%= if signed_in?(@conn) do %>
         &middot;
-        <%= link "Edit", to: Routes.quotes_quotes_path(@conn, :edit, @quote.id), class: "text-secondary" %>
+        <%= link "Edit", to: ~p"/quotes/quotes/#{@quote.id}/edit", class: "text-secondary" %>
 
         &middot;
-        <%= link "Delete", to: Routes.quotes_quotes_path(@conn, :delete, @quote.id), method: :delete, class: "text-danger", data: [confirm: "Really delete?"] %>
+        <%= link "Delete", to: ~p"/quotes/quotes/#{@quote.id}", method: :delete, class: "text-danger", data: [confirm: "Really delete?"] %>
       <% end %>
     </div>
 

@@ -1,10 +1,15 @@
 defmodule MyPersonalSpaceWeb.QuotesController do
   use Phoenix.Controller
 
-  alias MyPersonalSpace.Contexts.{AuthorContext, QuoteContext}
+  use Phoenix.VerifiedRoutes,
+    router: MyPersonalSpaceWeb.Router,
+    endpoint: MyPersonalSpaceWeb.Endpoint
+
+  alias MyPersonalSpace.Contexts.AuthorContext
+  alias MyPersonalSpace.Contexts.QuoteContext
   alias MyPersonalSpace.Models.Quote
+  alias MyPersonalSpaceWeb.ErrorView
   alias MyPersonalSpaceWeb.Plugs.Authenticate
-  alias MyPersonalSpaceWeb.Router.Helpers, as: Routes
 
   plug Authenticate when action not in [:index, :index_csv, :show]
 
@@ -13,7 +18,7 @@ defmodule MyPersonalSpaceWeb.QuotesController do
       {:ok, %{permalink: permalink}} ->
         conn
         |> put_flash(:info, "Successfully created quote.")
-        |> redirect(to: Routes.quotes_quotes_path(conn, :index) <> "##{permalink}")
+        |> redirect(to: ~p"/quotes/#{permalink}")
 
       {:error, changeset} ->
         authors = get_authors()
@@ -29,12 +34,12 @@ defmodule MyPersonalSpaceWeb.QuotesController do
       {:ok, _} ->
         conn
         |> put_flash(:info, "Successfully deleted quote.")
-        |> redirect(to: Routes.quotes_quotes_path(conn, :index))
+        |> redirect(to: ~p"/quotes")
 
       {:error, _} ->
         conn
         |> put_flash(:error, "Failed deleting quote.")
-        |> redirect(to: Routes.quotes_quotes_path(conn, :index))
+        |> redirect(to: ~p"/quotes")
     end
   end
 
@@ -46,7 +51,10 @@ defmodule MyPersonalSpaceWeb.QuotesController do
         render(conn, "edit.html", authors: authors, changeset: changeset, quote_id: quote.id)
 
       {:error, _} ->
-        send_resp(conn, 404, "Not found")
+        conn
+        |> put_status(:not_found)
+        |> put_view(ErrorView)
+        |> render("404.html")
     end
   end
 
@@ -77,12 +85,21 @@ defmodule MyPersonalSpaceWeb.QuotesController do
 
   def show(conn, %{"id" => permalink}) do
     case QuoteContext.get_quote_by_permalink(permalink) do
-      {:ok, %{permalink: permalink}} ->
-        redirect(conn, to: Routes.quotes_quotes_path(conn, :index) <> "##{permalink}")
+      {:ok, quote} ->
+        render(conn, "show.html", quote: quote)
 
       {:error, _} ->
-        send_resp(conn, 404, "Not found")
+        conn
+        |> put_status(:not_found)
+        |> put_view(ErrorView)
+        |> render("404.html")
     end
+  end
+
+  def random(conn, _random) do
+    %{permalink: permalink} = QuoteContext.get_random_quote()
+
+    redirect(conn, to: ~p"/quotes/#{permalink}")
   end
 
   def update(conn, %{"id" => id, "quote" => quote_params}) do
@@ -90,7 +107,7 @@ defmodule MyPersonalSpaceWeb.QuotesController do
       {:ok, %{permalink: permalink}} ->
         conn
         |> put_flash(:info, "Successfully edited quote.")
-        |> redirect(to: Routes.quotes_quotes_path(conn, :index) <> "##{permalink}")
+        |> redirect(to: ~p"/quotes/#{permalink}")
 
       {:error, changeset} ->
         authors = get_authors()
