@@ -11,7 +11,7 @@ defmodule MyPersonalSpaceWeb.QuotesController do
   alias MyPersonalSpaceWeb.ErrorView
   alias MyPersonalSpaceWeb.Plugs.Authenticate
 
-  plug Authenticate when action not in [:index, :index_csv, :show]
+  plug Authenticate when action not in [:index, :index_csv, :show, :random]
 
   def create(conn, %{"quote" => quote_params}) do
     case QuoteContext.create_quote(quote_params) do
