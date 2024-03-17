@@ -6,6 +6,7 @@ defmodule MyPersonalSpaceWeb.Router do
   alias MyPersonalSpaceWeb.PagesController
   alias MyPersonalSpaceWeb.Plugs.Authenticate
   alias MyPersonalSpaceWeb.QuotesController
+  alias MyPersonalSpaceWeb.SearchController
   alias MyPersonalSpaceWeb.SessionsController
   alias MyPersonalSpaceWeb.SqlDashboard
   alias MyPersonalSpaceWeb.Telemetry
@@ -35,6 +36,8 @@ defmodule MyPersonalSpaceWeb.Router do
 
     get "/", PagesController, :home
 
+    get "/search", SearchController, :search
+
     resources "/sessions", SessionsController,
       only: [
         :create,
@@ -44,6 +47,7 @@ defmodule MyPersonalSpaceWeb.Router do
       singleton: true
 
     get "/quotes.csv", QuotesController, :index_csv
+
     scope "/quotes", as: :quotes do
       get "/", QuotesController, :index
       resources "/quotes", QuotesController, except: [:index]

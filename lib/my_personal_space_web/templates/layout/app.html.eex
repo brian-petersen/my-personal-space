@@ -22,7 +22,7 @@
       </button>
 
       <div class="collapse navbar-collapse" id="nav">
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav mr-auto">
           <li class="nav-item">
             <a class="nav-link" href="<%= Routes.quotes_quotes_path(@conn, :index) %>">Quotes</a>
           </li>
@@ -40,6 +40,10 @@
             </li>
           <% end %>
         </ul>
+
+        <form action="<%= ~p"/search" %>" class="my-2 my-lg-0">
+          <input class="form-control mr-sm-2" placeholder="Search" name="query">
+        </form>
       </div>
     </div>
   </nav>
@@ -54,7 +58,7 @@
         </button>
 
         <div class="collapse navbar-collapse" id="quotes-nav">
-          <ul class="navbar-nav ml-auto">
+          <ul class="navbar-nav mr-auto">
             <li class="nav-item">
               <%= link "Quotes", to: Routes.quotes_quotes_path(@conn, :index), class: "nav-link" %>
             </li>

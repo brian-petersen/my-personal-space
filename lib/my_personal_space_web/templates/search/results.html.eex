@@ -1,0 +1,31 @@
+<h1>Results for "<%= @query %>"</h1>
+
+<hr />
+
+<section>
+  <h3>Authors</h3>
+  <%= if @authors != [] do %>
+    <ul class="pt-2">
+      <%= for a <- @authors do %>
+        <li><a href="<%= ~p"/quotes/authors/#{a.slug}" %>"><%= a.name %></a></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No results</p>
+  <% end %>
+</section>
+
+<hr />
+
+<section>
+  <h3>Quotes</h3>
+  <%= if @quotes != [] do %>
+    <ul class="pt-2">
+      <%= for q <- @quotes do %>
+        <li><a href="<%= ~p"/quotes##{q.permalink}" %>"><%= q.text %></a></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No results</p>
+  <% end %>
+</section>
