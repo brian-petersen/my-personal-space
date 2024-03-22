@@ -52,7 +52,7 @@
   <%= if String.starts_with?(@conn.request_path, "/quotes") do %>
     <nav class="navbar navbar-expand-sm navbar-dark bg-secondary">
       <div class="container">
-        <a class="navbar-brand font-italic" href="<%= ~p"/quotes" %>">Quotes</a>
+        <a class="navbar-brand" href="<%= ~p"/quotes" %>">Quotes</a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#quotes-nav">
           <span class="navbar-toggler-icon"></span>
