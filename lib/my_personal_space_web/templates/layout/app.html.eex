@@ -43,7 +43,7 @@
         </ul>
 
         <form action="<%= ~p"/search" %>" class="my-2 my-lg-0">
-          <input class="form-control mr-sm-2" placeholder="Search" name="query">
+          <input class="form-control mr-sm-2" value="<%= get_search_query(@conn)%>" placeholder="Search" name="query">
         </form>
       </div>
     </div>

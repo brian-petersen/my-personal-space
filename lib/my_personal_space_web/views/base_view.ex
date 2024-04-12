@@ -16,6 +16,7 @@ defmodule MyPersonalSpaceWeb.BaseView do
       alias Phoenix.Flash
       alias MyPersonalSpaceWeb.Router.Helpers, as: Routes
 
+      import MyPersonalSpaceWeb.BaseView
       import MyPersonalSpaceWeb.Authentication, only: [signed_in?: 1]
       import MyPersonalSpaceWeb.ErrorHelpers
 
@@ -24,5 +25,12 @@ defmodule MyPersonalSpaceWeb.BaseView do
       import Phoenix.HTML.Form
       use PhoenixHTMLHelpers
     end
+  end
+
+  def get_search_query(conn) do
+    conn
+    |> Plug.Conn.fetch_query_params()
+    |> Map.get(:query_params)
+    |> Map.get("query")
   end
 end
