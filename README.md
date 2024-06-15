@@ -18,7 +18,7 @@ My space on the internet.
 ### Updating Dependencies
 
 - Run `mix hex.outdated` to see status of deps
-- Run `mix deps.update --all` to update deps that follow semver
+- Run `mix deps.update --all` to update deps that won't break (according to semver)
 - To update other deps, edit `mix.exs` with the new version and run `mix deps.get`
 
 ### Updating Erlang/Elixir
@@ -30,3 +30,14 @@ For new versions of either:
 1. Update `Dockerfile`
     - For this one you need to match the Dockerimage base image with the proper version in Dockerhub
     - See https://hub.docker.com/r/hexpm/elixir for available image tags
+
+### Deploying/Database Migrations
+
+SQLite is used in production. Database migrations have to be performed manually
+after a deploy.
+
+1. Run `fly deploy` to deploy code to fly.dev
+1. Verify rollout is successful
+1. Connect to production instance: `fly ssh console`
+1. Connect to running system via iex: `./bin/my_personal_space remote`
+1. Run migrations: `MyPersonalSpace.Release.migrate()`
