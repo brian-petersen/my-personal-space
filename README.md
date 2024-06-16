@@ -31,13 +31,12 @@ For new versions of either:
     - For this one you need to match the Dockerimage base image with the proper version in Dockerhub
     - See https://hub.docker.com/r/hexpm/elixir for available image tags
 
-### Deploying/Database Migrations
-
-SQLite is used in production. Database migrations have to be performed manually
-after a deploy.
+### Deploying
 
 1. Run `fly deploy` to deploy code to fly.dev
 1. Verify rollout is successful
+
+### Connect to Producton via `iex`
+
 1. Connect to production instance: `fly ssh console`
 1. Connect to running system via iex: `./bin/my_personal_space remote`
-1. Run migrations: `MyPersonalSpace.Release.migrate()`

@@ -1,7 +1,11 @@
 defmodule MyPersonalSpace.Application do
   use Application
 
+  require Logger
+
   def start(_type, _args) do
+    run_migratons()
+
     children = [
       {Phoenix.PubSub, name: MyPersonalSpace.PubSub},
       MyPersonalSpace.Repo,
@@ -19,5 +23,13 @@ defmodule MyPersonalSpace.Application do
   def config_change(changed, _new, removed) do
     MyPersonalSpaceWeb.Endpoint.config_change(changed, removed)
     :ok
+  end
+
+  defp run_migratons() do
+    if Confex.get_env(:my_personal_space, :run_migrations) do
+      Logger.info("Running migrations...")
+      MyPersonalSpace.Release.migrate()
+      Logger.info("Finished migrations...")
+    end
   end
 end
