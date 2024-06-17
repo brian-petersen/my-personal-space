@@ -8,17 +8,20 @@ defmodule MyPersonalSpaceWeb.Router do
   alias MyPersonalSpaceWeb.QuotesController
   alias MyPersonalSpaceWeb.SearchController
   alias MyPersonalSpaceWeb.SessionsController
+  alias MyPersonalSpaceWeb.ShortenerController
+  alias MyPersonalSpaceWeb.ShortenerLive
   alias MyPersonalSpaceWeb.SqlDashboard
   alias MyPersonalSpaceWeb.Telemetry
 
   import Phoenix.Controller
   import Phoenix.LiveDashboard.Router
+  import Phoenix.LiveView.Router
   import Plug.Conn
 
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
-    plug :fetch_flash
+    plug :fetch_live_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
@@ -64,6 +67,12 @@ defmodule MyPersonalSpaceWeb.Router do
         ]
 
       get "/:id", QuotesController, :show
+    end
+
+    scope "/shortener" do
+      live "/", ShortenerLive
+      # get "/", ShortenerController, :index
+      get "/:slug", ShortenerController, :show
     end
   end
 

@@ -10,8 +10,9 @@ defmodule MyPersonalSpace.Application do
       {Phoenix.PubSub, name: MyPersonalSpace.PubSub},
       MyPersonalSpace.Repo,
       MyPersonalSpace.Scheduler,
+      MyPersonalSpace.Shortener,
       MyPersonalSpaceWeb.Telemetry,
-      MyPersonalSpaceWeb.Endpoint
+      MyPersonalSpaceWeb.Endpoint,
     ]
 
     opts = [strategy: :one_for_one, name: MyPersonalSpace.Supervisor]
