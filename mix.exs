@@ -40,6 +40,7 @@ defmodule MyPersonalSpace.MixProject do
       {:ecto_sqlite3, "~> 0.14"},
       {:ecto_sqlite3_extras, "~> 1.2"},
       {:esbuild, "~> 0.4", runtime: Mix.env() == :dev},
+      {:faker, "~> 0.18", only: :dev},
       {:jason, "~> 1.2"},
       {:phoenix, "~> 1.6"},
       {:phoenix_ecto, "~> 4.4"},

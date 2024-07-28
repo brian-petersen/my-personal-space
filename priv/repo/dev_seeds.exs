@@ -1,7 +1,11 @@
 alias MyPersonalSpace.Contexts.{AuthorContext, QuoteContext, UserContext}
 
+Faker.start()
+
+# Create a user
 {:ok, _user} = UserContext.create_user(%{username: "username", password: "password"})
 
+# Some hardcoded authors and quotes to ensure features are tested
 {:ok, _} = AuthorContext.create_author(%{name: "Mr. Nobody"})
 {:ok, saint_augustine} = AuthorContext.create_author(%{name: "Saint Augustine"})
 {:ok, john_lennon} = AuthorContext.create_author(%{name: "John Lennon"})
@@ -35,3 +39,18 @@ alias MyPersonalSpace.Contexts.{AuthorContext, QuoteContext, UserContext}
     author_id: john_lennon.id,
     source: "https://google.com"
   })
+
+# Now randomly generated data
+Enum.each(1..100, fn _ ->
+  {:ok, author} = AuthorContext.create_author(%{name: Faker.Person.name()})
+
+  quote_count = Enum.random(1..3)
+
+  Enum.each(1..quote_count, fn _ -> 
+    {:ok, _} =
+      QuoteContext.create_quote(%{
+        text: Enum.join(Faker.Lorem.sentences(1..5), "\n"),
+        author_id: author.id,
+      })
+  end)
+end)
