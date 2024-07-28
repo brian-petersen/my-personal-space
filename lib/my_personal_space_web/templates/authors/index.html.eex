@@ -1,21 +1,21 @@
 <h1 class="mb-3">Authors</h1>
 
-<div class="mb-3">
+<div class="mb-3 d-flex flex-wrap">
   <%= for l <- get_letters() do %>
-    <%= if Map.has_key?(@grouped_authors, l) do %>
-      <%= link l, to: "##{l}" %>
-    <% else %>
-      <%= l %>
-    <% end %>
+    <%= link l, to: "##{l}", class: "btn btn-outline-secondary mb-2 mr-2" %>
   <% end %>
 </div>
 
-<%= for {l, authors} <- @grouped_authors do %>
-  <div class="mb-2">
+<%= for l <- get_letters() do %>
+  <div class="mb-3">
     <h3 id="<%= l %>"><%= l %></h3>
 
-    <%= for author <- Enum.reverse(authors) do %>
-      <%= link author.name, to: Routes.quotes_authors_path(@conn, :show, author.slug) %><br>
+    <%= if Map.has_key?(@grouped_authors, l) do %>
+      <%= for author <- Enum.reverse(Map.get(@grouped_authors, l)) do %>
+        <%= link author.name, to: Routes.quotes_authors_path(@conn, :show, author.slug) %><br>
+      <% end %>
+    <% else %>
+      <i>No authors</i>
     <% end %>
   </div>
 <% end %>
