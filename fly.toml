@@ -1,46 +1,23 @@
-app = "my-personal-space"
-kill_signal = "SIGTERM"
-kill_timeout = 5
-processes = []
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file
 
-# TODO figure out how to apply migrations with sqlite
-# Manual steps in mean time:
-#   1. fly ssh console
-#   2. bin/my_personal_space remote
-#   3. MyPersonalSpace.Release.migrate()
-# [deploy]
-#   release_command = "bin/my_personal_space eval \"MyPersonalSpace.Release.migrate()\""
+app = 'my-personal-space'
+primary_region = 'sjc'
 
-[experimental]
-  allowed_public_ports = []
-  auto_rollback = true
+[build]
+
+[http_service]
+  internal_port = 4000
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[vm]]
+  memory = '256mb'
+  cpu_kind = 'shared'
+  cpus = 1
 
 [mounts]
   source="sqlite_data"
   destination="/app/db"
-
-[[services]]
-  http_checks = []
-  internal_port = 4000
-  processes = ["app"]
-  protocol = "tcp"
-  script_checks = []
-  [services.concurrency]
-    hard_limit = 25
-    soft_limit = 20
-    type = "connections"
-
-  [[services.ports]]
-    force_https = true
-    handlers = ["http"]
-    port = 80
-
-  [[services.ports]]
-    handlers = ["tls", "http"]
-    port = 443
-
-  [[services.tcp_checks]]
-    grace_period = "1s"
-    interval = "15s"
-    restart_limit = 0
-    timeout = "2s"
