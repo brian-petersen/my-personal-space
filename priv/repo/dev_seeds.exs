@@ -53,4 +53,10 @@ Enum.each(1..100, fn _ ->
         author_id: author.id,
       })
   end)
+
+  {:ok, _} =
+    QuoteContext.create_quote(%{
+      text: Faker.Markdown.markdown(),
+      author_id: author.id,
+    })
 end)
