@@ -79,8 +79,13 @@ defmodule MyPersonalSpaceWeb.QuotesController do
   def new(conn, _params) do
     changeset = Quote.build(%{})
     authors = get_authors()
+    default_author_id = AuthorContext.default_author_id()
 
-    render(conn, "new.html", authors: authors, changeset: changeset)
+    render(conn, "new.html",
+      authors: authors,
+      default_author_id: default_author_id,
+      changeset: changeset
+    )
   end
 
   def show(conn, %{"id" => permalink}) do
@@ -119,8 +124,7 @@ defmodule MyPersonalSpaceWeb.QuotesController do
   end
 
   defp get_authors do
-    AuthorContext.list_authors_sorted()
-    |> Enum.map(fn author ->
+    Enum.map(AuthorContext.list_authors_sorted(), fn author ->
       {author.name, author.id}
     end)
   end
