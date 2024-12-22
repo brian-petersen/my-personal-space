@@ -29,7 +29,7 @@ defmodule MyPersonalSpaceWeb.SqlDashboard do
     <%= if not is_nil(@error) do %>
       <section>
         <p class="mb-1">Error occurred!</p>
-        <code style="white-space: pre"><%= inspect(@error, pretty: true) %></code>
+        <code style="white-space: pre">{inspect(@error, pretty: true)}</code>
       </section>
     <% end %>
 
@@ -39,7 +39,7 @@ defmodule MyPersonalSpaceWeb.SqlDashboard do
           <thead>
             <tr>
               <%= for column <- @result.columns do %>
-                <th scope="col"><%= column %></th>
+                <th scope="col">{column}</th>
               <% end %>
             </tr>
           </thead>
@@ -47,7 +47,7 @@ defmodule MyPersonalSpaceWeb.SqlDashboard do
             <%= for row <- @result.rows do %>
               <tr>
                 <%= for item <- row do %>
-                  <td><%= item %></td>
+                  <td>{item}</td>
                 <% end %>
               </tr>
             <% end %>
@@ -59,7 +59,7 @@ defmodule MyPersonalSpaceWeb.SqlDashboard do
     <%= if not is_nil(@result) and not is_list(@result.columns) do %>
       <section>
         <p class="mb-1">Results</p>
-        <code style="white-space: pre"><%= inspect(@result, pretty: true) %></code>
+        <code style="white-space: pre">{inspect(@result, pretty: true)}</code>
       </section>
     <% end %>
     """

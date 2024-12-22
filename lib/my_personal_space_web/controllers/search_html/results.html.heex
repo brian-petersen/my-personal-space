@@ -1,4 +1,4 @@
-<h1>Results for "<%= @query %>"</h1>
+<h1>Results for "{@query}"</h1>
 
 <hr />
 
@@ -7,7 +7,7 @@
   <%= if @authors != [] do %>
     <ul class="pt-2">
       <%= for a <- @authors do %>
-        <li><a href="<%= ~p"/quotes/authors/#{a.slug}" %>"><%= a.name %></a></li>
+        <li><.link href={~p"/quotes/authors/#{a.slug}"}>{a.name}</.link></li>
       <% end %>
     </ul>
   <% else %>
@@ -22,7 +22,7 @@
   <%= if @quotes != [] do %>
     <ul class="pt-2">
       <%= for q <- @quotes do %>
-        <li><a href="<%= ~p"/quotes/#{q.permalink}" %>"><%= render_result_text(q.text) %></a></li>
+        <li><.link href={~p"/quotes/#{q.permalink}"}>{render_result_text(q.text)}</.link></li>
       <% end %>
     </ul>
   <% else %>

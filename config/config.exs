@@ -1,7 +1,7 @@
 import Config
 
 config :esbuild,
-  version: "0.12.26",
+  version: "0.24.0",
   default: [
     args: ~w(js/app.js --bundle --target=es2016 --outdir=../priv/static/assets),
     cd: Path.expand("../assets", __DIR__),

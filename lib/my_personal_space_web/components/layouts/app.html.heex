@@ -1,0 +1,95 @@
+<%!-- <nav class="navbar navbar-expand-sm navbar-dark bg-dark"> --%>
+<%!--   <div class="container"> --%>
+<%!--     <a class="navbar-brand" href="/">Luckywatcher</a> --%>
+<%!----%>
+<%!--     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav"> --%>
+<%!--       <span class="navbar-toggler-icon"></span> --%>
+<%!--     </button> --%>
+<%!----%>
+<%!--     <div class="collapse navbar-collapse" id="nav"> --%>
+<%!--       <ul class="navbar-nav mr-auto"> --%>
+<%!--         <li class="nav-item"> --%>
+<%!--           <a class="nav-link" href={~p"/quotes"}>Quotes</a> --%>
+<%!--         </li> --%>
+<%!----%>
+<%!--         <%= if not signed_in?(@conn) do %> --%>
+<%!--           <li class="nav-item"> --%>
+<%!--             <a class="nav-link" href={~p"/sessions/new?redirect=#{@conn.request_path}"}> --%>
+<%!--               Sign In --%>
+<%!--             </a> --%>
+<%!--           </li> --%>
+<%!--         <% else %> --%>
+<%!--           <li class="nav-item"> --%>
+<%!--             <.link href={~p"/dashboard"} class="nav-link"> --%>
+<%!--               Dashboard --%>
+<%!--             </.link> --%>
+<%!--           </li> --%>
+<%!--           <li class="nav-item"> --%>
+<%!--             <.link href={~p"/sessions"} class="nav-link" method="delete">Sign Out</.link> --%>
+<%!--           </li> --%>
+<%!--         <% end %> --%>
+<%!--       </ul> --%>
+<%!----%>
+<%!--       <form action={~p"/search"} class="my-2 my-lg-0"> --%>
+<%!--         <input --%>
+<%!--           class="form-control mr-sm-2" --%>
+<%!--           value={get_search_query(@conn)} --%>
+<%!--           placeholder="Search" --%>
+<%!--           name="query" --%>
+<%!--         /> --%>
+<%!--       </form> --%>
+<%!--     </div> --%>
+<%!--   </div> --%>
+<%!-- </nav> --%>
+
+<%!-- <%= if String.starts_with?(@conn.request_path, "/quotes") do %> --%>
+<%!--   <nav class="navbar navbar-expand-sm navbar-dark bg-secondary"> --%>
+<%!--     <div class="container"> --%>
+<%!--       <a class="navbar-brand" href={~p"/quotes"}>Quotes</a> --%>
+<%!----%>
+<%!--       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#quotes-nav"> --%>
+<%!--         <span class="navbar-toggler-icon"></span> --%>
+<%!--       </button> --%>
+<%!----%>
+<%!--       <div class="collapse navbar-collapse" id="quotes-nav"> --%>
+<%!--         <ul class="navbar-nav mr-auto"> --%>
+<%!--           <li class="nav-item"> --%>
+<%!--             <%= link "Quotes", to: ~p"/quotes", class: "nav-link" %> --%>
+<%!--           </li> --%>
+<%!--           <li class="nav-item"> --%>
+<%!--             <%= link "Authors", to: ~p"/quotes/authors", class: "nav-link" %> --%>
+<%!--           </li> --%>
+<%!--           <li class="nav-item"> --%>
+<%!--             <%= link "Random", to: ~p"/quotes/random", class: "nav-link" %> --%>
+<%!--           </li> --%>
+<%!--           <%= if signed_in?(@conn) do %> --%>
+<%!--             <li class="nav-item"> --%>
+<%!--               <%= link "Add Quote", to: ~p"/quotes/quotes/new", class: "nav-link" %> --%>
+<%!--             </li> --%>
+<%!--             <li class="nav-item"> --%>
+<%!--               <%= link "Add Author", to: ~p"/quotes/authors/new", class: "nav-link" %> --%>
+<%!--             </li> --%>
+<%!--           <% end %> --%>
+<%!--         </ul> --%>
+<%!--       </div> --%>
+<%!--     </div> --%>
+<%!--   </nav> --%>
+<%!-- <% end %> --%>
+
+<%!-- <div class="container mt-3"> --%>
+<%!--   <%= if Flash.get(@flash, :info) do %> --%>
+<%!--     <p class="alert alert-info alert-dismissable"> --%>
+<%!--       <%= Flash.get(@flash, :info) %> --%>
+<%!--       <button type="button" class="close" data-dismiss="alert">&times;</button> --%>
+<%!--     </p> --%>
+<%!--   <% end %> --%>
+<%!----%>
+<%!--   <%= if Flash.get(@flash, :error) do %> --%>
+<%!--     <p class="alert alert-danger alert-dismissable"> --%>
+<%!--       <%= Flash.get(@flash, :error) %> --%>
+<%!--       <button type="button" class="close" data-dismiss="alert">&times;</button> --%>
+<%!--     </p> --%>
+<%!--   <% end %> --%>
+
+{@inner_content}
+<%!-- </div> --%>
