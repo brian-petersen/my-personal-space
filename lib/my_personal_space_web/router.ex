@@ -1,5 +1,5 @@
 defmodule MyPersonalSpaceWeb.Router do
-  use Phoenix.Router
+  use MyPersonalSpaceWeb, :router
 
   alias MyPersonalSpace.Repo
   alias MyPersonalSpaceWeb.AuthorsController
@@ -11,14 +11,13 @@ defmodule MyPersonalSpaceWeb.Router do
   alias MyPersonalSpaceWeb.SqlDashboard
   alias MyPersonalSpaceWeb.Telemetry
 
-  import Phoenix.Controller
   import Phoenix.LiveDashboard.Router
-  import Plug.Conn
 
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
-    plug :fetch_flash
+    plug :fetch_live_flash
+    plug :put_root_layout, html: {MyPersonalSpaceWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
@@ -33,6 +32,8 @@ defmodule MyPersonalSpaceWeb.Router do
 
   scope "/" do
     pipe_through :browser
+
+    live "/test", MyPersonalSpaceWeb.AddLive
 
     get "/", PagesController, :home
 

@@ -1,5 +1,5 @@
 defmodule MyPersonalSpaceWeb.SearchController do
-  use Phoenix.Controller
+  use MyPersonalSpaceWeb, :controller
 
   alias MyPersonalSpace.Search
   alias MyPersonalSpaceWeb.ErrorView
