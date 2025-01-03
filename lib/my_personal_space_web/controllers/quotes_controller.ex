@@ -62,7 +62,6 @@ defmodule MyPersonalSpaceWeb.QuotesController do
     render(conn, "index.html", quotes: QuoteContext.list_quotes())
   end
 
-  @spec index_csv(Plug.Conn.t(), any) :: Plug.Conn.t()
   def index_csv(conn, _params) do
     csv_content =
       QuoteContext.list_quotes()
@@ -88,7 +87,7 @@ defmodule MyPersonalSpaceWeb.QuotesController do
     )
   end
 
-  def show(conn, %{"id" => permalink}) do
+  def show(conn, %{"permalink" => permalink}) do
     case QuoteContext.get_quote_by_permalink(permalink) do
       {:ok, quote} ->
         render(conn, "show.html", quote: quote)

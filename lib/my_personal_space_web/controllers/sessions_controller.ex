@@ -1,12 +1,12 @@
 defmodule MyPersonalSpaceWeb.SessionsController do
-  use Phoenix.Controller
+  use MyPersonalSpaceWeb, :controller
 
   alias MyPersonalSpace.Contexts.UserContext
   alias MyPersonalSpace.Models.User
   alias MyPersonalSpaceWeb.Router.Helpers, as: Routes
 
   def new(conn, _params) do
-    render(conn, "new.html")
+    render(conn, :new)
   end
 
   def create(conn, %{"username" => username, "password" => password} = _params) do
@@ -23,7 +23,7 @@ defmodule MyPersonalSpaceWeb.SessionsController do
       _ ->
         conn
         |> put_flash(:error, "Invalid username or password.")
-        |> redirect(to: Routes.sessions_path(conn, :new, username: username, redirect: redirect))
+        |> redirect(to: Routes.sessions_path(conn, :new, redirect: redirect))
     end
   end
 

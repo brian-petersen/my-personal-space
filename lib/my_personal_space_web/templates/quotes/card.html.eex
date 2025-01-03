@@ -31,7 +31,7 @@
 
       <%= if signed_in?(@conn) do %>
         &middot;
-        <%= link "Edit", to: ~p"/quotes/quotes/#{@quote.id}/edit", class: "text-secondary" %>
+        <%= link "Edit", to: ~p"/quotes/#{@quote.permalink}/edit", class: "text-secondary" %>
 
         &middot;
         <%= link "Delete", to: ~p"/quotes/quotes/#{@quote.id}", method: :delete, class: "text-danger", data: [confirm: "Really delete?"] %>

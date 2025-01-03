@@ -33,8 +33,6 @@ defmodule MyPersonalSpaceWeb.Router do
   scope "/" do
     pipe_through :browser
 
-    live "/test", MyPersonalSpaceWeb.AddLive
-
     get "/", PagesController, :home
 
     get "/search", SearchController, :search
@@ -52,8 +50,10 @@ defmodule MyPersonalSpaceWeb.Router do
     scope "/quotes", as: :quotes do
       get "/", QuotesController, :index
       get "/random", QuotesController, :random
+      
+      live "/new", MyPersonalSpaceWeb.QuoteFormLive
 
-      resources "/quotes", QuotesController, except: [:index, :show]
+      resources "/quotes", QuotesController, except: [:edit, :index, :new, :show]
 
       resources "/authors", AuthorsController,
         param: "slug",
@@ -64,7 +64,8 @@ defmodule MyPersonalSpaceWeb.Router do
           :show
         ]
 
-      get "/:id", QuotesController, :show
+      get "/:permalink", QuotesController, :show
+      live "/:permalink/edit", MyPersonalSpaceWeb.QuoteFormLive
     end
   end
 

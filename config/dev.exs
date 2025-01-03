@@ -19,9 +19,8 @@ config :my_personal_space, MyPersonalSpaceWeb.Endpoint,
 config :my_personal_space, MyPersonalSpaceWeb.Endpoint,
   live_reload: [
     patterns: [
-      ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
-      ~r"lib/my_personal_space_web/(live|views)/.*(ex)$",
-      ~r"lib/my_personal_space_web/templates/.*(eex)$"
+      ~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$",
+      ~r"lib/my_personal_space_web/(controllers|live|components)/.*(ex|heex)$"
     ]
   ]
 

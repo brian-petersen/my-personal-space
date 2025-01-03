@@ -42,7 +42,7 @@ defmodule MyPersonalSpaceWeb.Endpoint do
   plug Plug.Head
   plug Plug.Session, @session_options
 
-  socket "/live", Phoenix.LiveView.Socket
+  socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
 
   plug MyPersonalSpaceWeb.Router
 end
