@@ -22,10 +22,15 @@ defmodule MyPersonalSpaceWeb.QuotesController do
 
       {:error, changeset} ->
         authors = get_authors()
+        default_author_id = AuthorContext.default_author_id()
 
         conn
         |> put_flash(:error, "Failed to create quote.")
-        |> render("new.html", authors: authors, changeset: changeset)
+        |> render("new.html",
+          authors: authors,
+          changeset: changeset,
+          default_author_id: default_author_id
+        )
     end
   end
 
@@ -48,7 +53,14 @@ defmodule MyPersonalSpaceWeb.QuotesController do
       {:ok, quote} ->
         changeset = Quote.build(quote, %{})
         authors = get_authors()
-        render(conn, "edit.html", authors: authors, changeset: changeset, quote_id: quote.id)
+        default_author_id = AuthorContext.default_author_id()
+
+        render(conn, "edit.html",
+          authors: authors,
+          changeset: changeset,
+          default_author_id: default_author_id,
+          quote_id: quote.id
+        )
 
       {:error, _} ->
         conn
@@ -83,8 +95,8 @@ defmodule MyPersonalSpaceWeb.QuotesController do
 
     render(conn, "new.html",
       authors: authors,
-      default_author_id: default_author_id,
-      changeset: changeset
+      changeset: changeset,
+      default_author_id: default_author_id
     )
   end
 
@@ -116,10 +128,16 @@ defmodule MyPersonalSpaceWeb.QuotesController do
 
       {:error, changeset} ->
         authors = get_authors()
+        default_author_id = AuthorContext.default_author_id()
 
         conn
         |> put_flash(:error, "Failed to edit quote.")
-        |> render("edit.html", authors: authors, changeset: changeset, quote_id: id)
+        |> render("edit.html",
+          authors: authors,
+          changeset: changeset,
+          default_author_id: default_author_id,
+          quote_id: id
+        )
     end
   end
 
