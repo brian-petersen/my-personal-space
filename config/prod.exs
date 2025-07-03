@@ -19,3 +19,6 @@ config :my_personal_space, :run_migrations, true
 
 # Do not print debug messages in production
 config :logger, level: :info
+
+config :logger, :default_handler,
+  formatter: {LoggerJSON.Formatters.Basic, metadata: [:all]}

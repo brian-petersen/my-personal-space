@@ -42,6 +42,7 @@ defmodule MyPersonalSpace.MixProject do
       {:esbuild, "~> 0.4", runtime: Mix.env() == :dev},
       {:faker, "~> 0.18", only: :dev},
       {:jason, "~> 1.2"},
+      {:logger_json, "~> 7.0"},
       {:phoenix, "~> 1.6"},
       {:phoenix_ecto, "~> 4.4"},
       {:phoenix_html, "~> 4.0"},
