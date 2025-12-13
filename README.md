@@ -4,8 +4,8 @@ My space on the internet.
 
 ## Getting Started
 
-1. Install `asdf`: https://asdf-vm.com/guide/getting-started.html
-1. Set up Elixir and Erlang versions used by project: `asdf install`
+1. Install `mise`
+1. Set up Elixir and Erlang versions used by project: `mise install`
 1. Install dependencies: `mix deps.get`
 1. Compile the code: `mix compile`
 1. Set up the database: `mix ecto.setup` (sqlite is used for the database)
@@ -26,17 +26,24 @@ My space on the internet.
 For new versions of either:
 
 1. Update `.tool-versions`
-1. Run `asdf install`
+1. Run `mise install`
 1. Update `Dockerfile`
     - For this one you need to match the Dockerimage base image with the proper version in Dockerhub
     - See https://hub.docker.com/r/hexpm/elixir for available image tags
 
 ### Deploying
 
-1. Run `fly deploy` to deploy code to fly.dev
-1. Verify rollout is successful
+The images are built and pushed to GitHub. As a prereq:
+
+    op read "op://Personal/GitHub Package Publishing PAT/password" | docker login ghcr.io -u USERNAME --password-stdin
+
+That only needs to be done one time.
+
+1. Build the image: `docker build -t ghcr.io/brian-petersen/my-personal-space:latest .`
+1. Push the image: `docker push ghcr.io/brian-petersen/my-personal-space:latest`
+1. Roll the pod in the k8s cluster
 
 ### Connect to Producton via `iex`
 
-1. Connect to production instance: `fly ssh console`
+1. Connect to production instance
 1. Connect to running system via iex: `./bin/my_personal_space remote`
