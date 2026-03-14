@@ -44,7 +44,7 @@ defmodule MyPersonalSpace.MixProject do
       {:faker, "~> 0.18", only: :dev},
       {:jason, "~> 1.2"},
       {:logger_json, "~> 7.0"},
-      {:phoenix, "~> 1.6"},
+      {:phoenix, "~> 1.8"},
       {:phoenix_ecto, "~> 4.4"},
       {:phoenix_html, "~> 4.0"},
       {:phoenix_html_helpers, "~> 1.0"},

@@ -7,4 +7,7 @@ config :my_personal_space, MyPersonalSpaceWeb.Endpoint,
   server: false
 
 # Print only warnings and errors during test
-config :logger, level: :warn
+config :logger, level: :warning
+
+# Configure your database
+config :my_personal_space, MyPersonalSpace.Repo, pool: Ecto.Adapters.SQL.Sandbox

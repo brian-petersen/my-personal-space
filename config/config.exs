@@ -30,7 +30,9 @@ config :my_personal_space, MyPersonalSpace.Repo, database: "db/my_personal_space
 config :my_personal_space, MyPersonalSpaceWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "Zm0bY+2g6Ywx2bQXfHi2vmK1JMKyDZ7VP3K+0G8/CzdINXskfUqH+gHBfKlxOvXP",
-  render_errors: [view: MyPersonalSpaceWeb.ErrorView, accepts: ~w(html json)],
+  render_errors: [
+    formats: [html: MyPersonalSpaceWeb.ErrorHTML, json: MyPersonalSpaceWeb.ErrorJSON]
+  ],
   pubsub_server: MyPersonalSpace.PubSub,
   live_view: [signing_salt: "SEJ60pgc"]
 

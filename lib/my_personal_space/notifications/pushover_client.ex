@@ -1,13 +1,15 @@
 defmodule MyPersonalSpace.Notifications.PushoverClient do
-  use Tesla
-
-  plug Tesla.Middleware.BaseUrl, "https://api.pushover.net/1"
-  plug Tesla.Middleware.JSON
-
   @behaviour MyPersonalSpace.Notifications.Client
 
+  defp client do
+    Tesla.client([
+      {Tesla.Middleware.BaseUrl, "https://api.pushover.net/1"},
+      Tesla.Middleware.JSON
+    ])
+  end
+
   def create_link_push(title, message, url) do
-    post("/messages.json", %{
+    Tesla.post(client(), "/messages.json", %{
       token: pushbullet_api_token(),
       user: pushbullet_user_token(),
       message: message,
@@ -17,7 +19,7 @@ defmodule MyPersonalSpace.Notifications.PushoverClient do
   end
 
   def create_note_push(title, message) do
-    post("/messages.json", %{
+    Tesla.post(client(), "/messages.json", %{
       token: pushbullet_api_token(),
       user: pushbullet_user_token(),
       message: message,
