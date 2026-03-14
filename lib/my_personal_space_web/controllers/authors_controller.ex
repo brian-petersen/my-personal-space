@@ -1,18 +1,18 @@
 defmodule MyPersonalSpaceWeb.AuthorsController do
-  use Phoenix.Controller
+  use MyPersonalSpaceWeb, :controller
 
   alias MyPersonalSpace.Contexts.{AuthorContext, QuoteContext}
   alias MyPersonalSpace.Models.Author
-  alias MyPersonalSpaceWeb.ErrorView
+  alias MyPersonalSpaceWeb.ErrorHTML
   alias MyPersonalSpaceWeb.Plugs.Authenticate
-  alias MyPersonalSpaceWeb.Router.Helpers, as: Routes
 
   plug Authenticate when action not in [:index, :show]
 
   def new(conn, _params) do
     changeset = Author.build(%{})
+    form = Phoenix.Component.to_form(changeset)
 
-    render(conn, "new.html", changeset: changeset)
+    render(conn, "new.html", form: form)
   end
 
   def create(conn, %{"author" => author_params}) do
@@ -20,12 +20,14 @@ defmodule MyPersonalSpaceWeb.AuthorsController do
       {:ok, _} ->
         conn
         |> put_flash(:info, "Successfully created author.")
-        |> redirect(to: Routes.quotes_quotes_path(conn, :index))
+        |> redirect(to: ~p"/quotes")
 
       {:error, changeset} ->
+        form = Phoenix.Component.to_form(changeset)
+
         conn
         |> put_flash(:error, "Failed to create author.")
-        |> render("new.html", changeset: changeset)
+        |> render("new.html", form: form)
     end
   end
 
@@ -43,7 +45,7 @@ defmodule MyPersonalSpaceWeb.AuthorsController do
       _ ->
         conn
         |> put_status(:not_found)
-        |> put_view(ErrorView)
+        |> put_view(ErrorHTML)
         |> render("404.html")
     end
   end

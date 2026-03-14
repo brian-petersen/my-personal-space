@@ -1,7 +1,8 @@
-defmodule MyPersonalSpaceWeb.QuotesView do
-  use MyPersonalSpaceWeb.BaseView
+defmodule MyPersonalSpaceWeb.QuotesHTML do
+  use MyPersonalSpaceWeb, :html
 
-  # From https://github.com/spence/valid_url/blob/master/lib/valid_url.ex
+  Phoenix.Template.embed_templates("quotes_html/*")
+
   @link_regex Regex.compile!(
                 "^" <>
                   "(?:(?:https?|ftp)://)" <>
@@ -25,11 +26,11 @@ defmodule MyPersonalSpaceWeb.QuotesView do
                 "iu"
               )
 
-  defp is_link?(text) do
+  def is_link?(text) do
     Regex.match?(@link_regex, text)
   end
 
-  defp actions_class(show_author) do
+  def actions_class(show_author) do
     if show_author do
       "float-right"
     else

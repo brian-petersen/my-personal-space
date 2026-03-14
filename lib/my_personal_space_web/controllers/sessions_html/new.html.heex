@@ -1,0 +1,5 @@
+<.bootstrap_form for={@form} action={~p"/sessions"}>
+  <.input field={@form[:username]} type="text" label="Username" />
+  <.input field={@form[:password]} type="password" label="Password" />
+  <.button type="submit">Sign In</.button>
+</.bootstrap_form>

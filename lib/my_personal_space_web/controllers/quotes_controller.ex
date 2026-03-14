@@ -1,26 +1,23 @@
 defmodule MyPersonalSpaceWeb.QuotesController do
-  use Phoenix.Controller
-
-  use Phoenix.VerifiedRoutes,
-    router: MyPersonalSpaceWeb.Router,
-    endpoint: MyPersonalSpaceWeb.Endpoint
+  use MyPersonalSpaceWeb, :controller
 
   alias MyPersonalSpace.Contexts.AuthorContext
   alias MyPersonalSpace.Contexts.QuoteContext
   alias MyPersonalSpace.Models.Quote
-  alias MyPersonalSpaceWeb.ErrorView
+  alias MyPersonalSpaceWeb.ErrorHTML
   alias MyPersonalSpaceWeb.Plugs.Authenticate
 
   plug Authenticate when action not in [:index, :index_csv, :show, :random]
 
   def create(conn, %{"quote" => quote_params}) do
     case QuoteContext.create_quote(quote_params) do
-      {:ok, %{permalink: permalink}} ->
+      {:ok, quote} ->
         conn
         |> put_flash(:info, "Successfully created quote.")
-        |> redirect(to: ~p"/quotes/#{permalink}")
+        |> redirect(to: ~p"/quotes/#{quote.permalink}")
 
       {:error, changeset} ->
+        form = Phoenix.Component.to_form(changeset)
         authors = get_authors()
         default_author_id = AuthorContext.default_author_id()
 
@@ -28,7 +25,7 @@ defmodule MyPersonalSpaceWeb.QuotesController do
         |> put_flash(:error, "Failed to create quote.")
         |> render("new.html",
           authors: authors,
-          changeset: changeset,
+          form: form,
           default_author_id: default_author_id
         )
     end
@@ -52,12 +49,13 @@ defmodule MyPersonalSpaceWeb.QuotesController do
     case QuoteContext.get_quote(id) do
       {:ok, quote} ->
         changeset = Quote.build(quote, %{})
+        form = Phoenix.Component.to_form(changeset)
         authors = get_authors()
         default_author_id = AuthorContext.default_author_id()
 
         render(conn, "edit.html",
           authors: authors,
-          changeset: changeset,
+          form: form,
           default_author_id: default_author_id,
           quote_id: quote.id
         )
@@ -65,7 +63,7 @@ defmodule MyPersonalSpaceWeb.QuotesController do
       {:error, _} ->
         conn
         |> put_status(:not_found)
-        |> put_view(ErrorView)
+        |> put_view(ErrorHTML)
         |> render("404.html")
     end
   end
@@ -77,11 +75,17 @@ defmodule MyPersonalSpaceWeb.QuotesController do
   @spec index_csv(Plug.Conn.t(), any) :: Plug.Conn.t()
   def index_csv(conn, _params) do
     csv_content =
-      QuoteContext.list_quotes()
-      |> Stream.map(&Quote.to_csv_map/1)
-      |> CSV.encode(headers: true)
-      |> Enum.to_list()
-      |> Enum.join()
+      case QuoteContext.list_quotes() do
+        [] ->
+          "author,text,source\n"
+
+        quotes ->
+          quotes
+          |> Stream.map(&Quote.to_csv_map/1)
+          |> CSV.encode(headers: [:author, :text, :source])
+          |> Enum.to_list()
+          |> Enum.join()
+      end
 
     conn
     |> put_resp_content_type("text/plain")
@@ -90,12 +94,13 @@ defmodule MyPersonalSpaceWeb.QuotesController do
 
   def new(conn, _params) do
     changeset = Quote.build(%{})
+    form = Phoenix.Component.to_form(changeset)
     authors = get_authors()
     default_author_id = AuthorContext.default_author_id()
 
     render(conn, "new.html",
       authors: authors,
-      changeset: changeset,
+      form: form,
       default_author_id: default_author_id
     )
   end
@@ -108,7 +113,7 @@ defmodule MyPersonalSpaceWeb.QuotesController do
       {:error, _} ->
         conn
         |> put_status(:not_found)
-        |> put_view(ErrorView)
+        |> put_view(ErrorHTML)
         |> render("404.html")
     end
   end
@@ -121,12 +126,13 @@ defmodule MyPersonalSpaceWeb.QuotesController do
 
   def update(conn, %{"id" => id, "quote" => quote_params}) do
     case QuoteContext.update_quote(id, quote_params) do
-      {:ok, %{permalink: permalink}} ->
+      {:ok, quote} ->
         conn
         |> put_flash(:info, "Successfully edited quote.")
-        |> redirect(to: ~p"/quotes/#{permalink}")
+        |> redirect(to: ~p"/quotes/#{quote.permalink}")
 
       {:error, changeset} ->
+        form = Phoenix.Component.to_form(changeset)
         authors = get_authors()
         default_author_id = AuthorContext.default_author_id()
 
@@ -134,7 +140,7 @@ defmodule MyPersonalSpaceWeb.QuotesController do
         |> put_flash(:error, "Failed to edit quote.")
         |> render("edit.html",
           authors: authors,
-          changeset: changeset,
+          form: form,
           default_author_id: default_author_id,
           quote_id: id
         )

@@ -1,15 +1,17 @@
 defmodule MyPersonalSpaceWeb.SessionsController do
-  use Phoenix.Controller
+  use MyPersonalSpaceWeb, :controller
 
   alias MyPersonalSpace.Contexts.UserContext
   alias MyPersonalSpace.Models.User
   alias MyPersonalSpaceWeb.Router.Helpers, as: Routes
 
-  def new(conn, _params) do
-    render(conn, "new.html")
+  def new(conn, params) do
+    username = Map.get(params, "username", "")
+    form = Phoenix.Component.to_form(%{"username" => username}, as: :user)
+    render(conn, "new.html", form: form)
   end
 
-  def create(conn, %{"username" => username, "password" => password} = _params) do
+  def create(conn, %{"user" => %{"username" => username, "password" => password}}) do
     redirect = get_referer_redirect(conn)
 
     with user when not is_nil(user) <- UserContext.get_user_by_username(username),

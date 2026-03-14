@@ -1,5 +1,5 @@
 defmodule MyPersonalSpaceWeb.PagesController do
-  use Phoenix.Controller
+  use MyPersonalSpaceWeb, :controller
 
   def home(conn, _params) do
     render(conn, "home.html")

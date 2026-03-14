@@ -1,3 +1,0 @@
-<%= for q <- @quotes do %>
-  <%= render "card.html", conn: @conn, quote: q, show_author: true %>
-<% end %>

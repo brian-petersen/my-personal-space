@@ -1,0 +1,3 @@
+<%= for q <- @quotes do %>
+  {MyPersonalSpaceWeb.QuotesHTML.card(%{conn: @conn, quote: q, show_author: true})}
+<% end %>
