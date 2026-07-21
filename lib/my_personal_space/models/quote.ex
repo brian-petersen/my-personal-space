@@ -40,15 +40,11 @@ defmodule MyPersonalSpace.Models.Quote do
   end
 
   defp validate_and_render_text(changeset) do
-    with {:ok, text} <- fetch_change(changeset, :text),
-         {:ok, text_rendered, _errors} <- Earmark.as_html(text, compact_output: true) do
-      put_change(changeset, :text_rendered, text_rendered)
+    with {:ok, text} <- fetch_change(changeset, :text) do
+      put_change(changeset, :text_rendered, MDEx.to_html!(text, render: [compact_html: true]))
     else
       :error ->
         changeset
-
-      {:error, _html, _errors} ->
-        add_error(changeset, :text, "Quote text contains improper markdown")
     end
   end
 

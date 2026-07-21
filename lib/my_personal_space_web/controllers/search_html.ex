@@ -4,9 +4,6 @@ defmodule MyPersonalSpaceWeb.SearchHTML do
   Phoenix.Template.embed_templates("search_html/*")
 
   def render_result_text(text) do
-    case Earmark.as_html(text) do
-      {:ok, html, _errors} -> PhoenixHtmlSanitizer.Helpers.sanitize(html, :strip_tags)
-      _ -> text
-    end
+    text |> MDEx.to_html!() |> PhoenixHtmlSanitizer.Helpers.sanitize(:strip_tags)
   end
 end

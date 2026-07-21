@@ -37,7 +37,7 @@ defmodule MyPersonalSpace.MixProject do
       {:bcrypt_elixir, "~> 3.0"},
       {:confex, "~> 3.5"},
       {:csv, "~> 3.0"},
-      {:earmark, "~> 1.4"},
+      {:mdex, "~> 0.13"},
       {:ecto_sqlite3, "~> 0.14"},
       {:ecto_sqlite3_extras, "~> 1.2"},
       {:esbuild, "~> 0.4", runtime: Mix.env() == :dev},
