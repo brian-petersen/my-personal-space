@@ -1,9 +1,9 @@
 <.bootstrap_form for={@form} action={@action}>
   <.input field={@form[:text]} type="textarea" label="Quote" />
-  
+
   <.input field={@form[:author_id]} type="select" options={@authors} label="Author" />
-  
+
   <.input field={@form[:source]} type="text" label="Source" />
-  
+
   <.button type="submit">Submit</.button>
 </.bootstrap_form>
