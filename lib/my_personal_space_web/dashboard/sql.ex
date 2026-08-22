@@ -21,7 +21,15 @@ defmodule MyPersonalSpaceWeb.SqlDashboard do
     ~H"""
     <form class="mb-3" phx-change="change" phx-submit="submit">
       <div class="input-group">
-        <textarea class="form-control" name="query" rows="5"><%= @query %></textarea>
+        <textarea
+          id="sql-submit"
+          class="form-control"
+          name="query"
+          rows="5"
+          phx-hook=".SqlSubmit"
+          phx-debounce="blur"
+        ><%= @query %></textarea>
+
         <button class="btn btn-primary" type="submit">Run</button>
       </div>
     </form>
@@ -62,6 +70,19 @@ defmodule MyPersonalSpaceWeb.SqlDashboard do
         <code style="white-space: pre">{inspect(@result, pretty: true)}</code>
       </section>
     <% end %>
+
+    <script :type={Phoenix.LiveView.ColocatedHook} name=".SqlSubmit" runtime>
+      {
+        mounted() {
+          this.el.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" && e.shiftKey) {
+              e.preventDefault();
+              this.el.form.requestSubmit();
+            }
+          });
+        }
+      }
+    </script>
     """
   end
 
