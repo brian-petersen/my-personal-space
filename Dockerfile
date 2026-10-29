@@ -1,6 +1,6 @@
-ARG elixir_version=1.20.2
-ARG erlang_version=28.5.0.3
-ARG alpine_version=3.24.1
+ARG elixir_version=1.20.4
+ARG erlang_version=29.1.2
+ARG alpine_version=3.24.3
 
 ### app builder ###
 FROM docker.io/hexpm/elixir:$elixir_version-erlang-$erlang_version-alpine-$alpine_version AS builder
