@@ -98,5 +98,7 @@ defmodule MyPersonalSpaceWeb.SqlDashboard do
       {:ok, result} -> {:noreply, assign(socket, error: nil, result: result)}
       {:error, error} -> {:noreply, assign(socket, error: error, result: nil)}
     end
+  rescue
+    error -> {:noreply, assign(socket, error: error, result: nil)}
   end
 end
